@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">MyOneRowCode</string>
+    <!--<string name="app_name">第一行代码</string>-->
     <string name="hello_world">你好 世界!</string>
+    <string name="main_button_1_text">跳转主页</string>
+    <string name="main_menu_item_1_title">add</string>
+    <string name="main_menu_item_2_title">remove</string>
+    <string name="main_menu_item_3_title">item3</string>
 </resources>
