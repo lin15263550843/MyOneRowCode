@@ -2,8 +2,17 @@
     <string name="app_name">MyOneRowCode</string>
     <!--<string name="app_name">第一行代码</string>-->
     <string name="hello_world">你好 世界!</string>
+
     <string name="main_button_1_text">跳转主页</string>
+    <string name="main_button_2_text">跳转我的信息</string>
+    <string name="main_button_3_text">打开外部浏览器</string>
+    <string name="main_button_4_text">打开电话</string>
+    <string name="main_button_5_text">返回上一页</string>
     <string name="main_menu_item_1_title">add</string>
     <string name="main_menu_item_2_title">remove</string>
-    <string name="main_menu_item_3_title">item3</string>
+    <string name="main_menu_item_3_title">退出应用</string>
+
+    <string name="my_information_button_1_text">按钮</string>
+
+    <string name="home_button_1_text">数据返回main页面</string>
 </resources>

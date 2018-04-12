@@ -5,14 +5,10 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/home_button_1"
+        android:id="@+id/my_information_button_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/home_button_1_text" />
+        android:text="@string/my_information_button_1_text"
+        android:layout_marginTop="500px"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="home哈哈哈哈哈哈哈"
-        android:textSize="100px" />
 </LinearLayout>
