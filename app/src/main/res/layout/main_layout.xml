@@ -4,6 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!--<include layout="@layout/title_layout" />-->
+    <com.example.lhd.myonerowcode.common.TitleActivity
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="我是main页面，你咬我呀，略略略~"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/main_button_1"
         android:layout_width="match_parent"
@@ -23,6 +37,13 @@
         android:text="@string/main_button_3_text" />
 
     <Button
+        android:id="@+id/main_button_7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_7_text"
+        android:textAllCaps="false" />
+
+    <Button
         android:id="@+id/main_button_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,4 +55,40 @@
         android:layout_height="wrap_content"
         android:text="@string/main_button_5_text" />
 
+    <Button
+        android:id="@+id/main_button_6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_6_text" />
+
+    <EditText
+        android:id="@+id/main_editText_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="@string/main_editText_1_text"
+        android:maxLines="3"
+        android:padding="10sp"
+        android:textColorHint="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/main_button_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_8_text"
+        android:textAllCaps="false" />
+
+    <ProgressBar
+        android:id="@+id/main_progressbar_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/main_button_9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_9_text"
+        android:textAllCaps="false"
+        android:textColor="@color/colorRed" />
 </LinearLayout>
