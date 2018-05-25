@@ -74,14 +74,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_button_home_fragment:
-                homeFragment.setCompoundDrawables(null, shouyeOn, null, null);
-                myListFragment.setCompoundDrawables(null, shouyeOff, null, null);
+                buttonHomeFragment.setCompoundDrawables(null, shouyeOn, null, null);
+                buttonMyListFragment.setCompoundDrawables(null, shouyeOff, null, null);
                 Toast.makeText(this, "首页", Toast.LENGTH_SHORT).show();
                 replaceFragment(new HomeFragment());
                 break;
             case R.id.home_button_mylist_fragment:
-                homeFragment.setCompoundDrawables(null, shouyeOff, null, null);
-                myListFragment.setCompoundDrawables(null, shouyeOn, null, null);
+                buttonHomeFragment.setCompoundDrawables(null, shouyeOff, null, null);
+                buttonMyListFragment.setCompoundDrawables(null, shouyeOn, null, null);
                 Toast.makeText(this, "列表", Toast.LENGTH_SHORT).show();
                 break;
             default:
