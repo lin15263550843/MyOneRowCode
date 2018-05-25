@@ -13,6 +13,8 @@
     <string name="main_button_7_text">AlertDialog</string>
     <string name="main_button_8_text">显示/隐藏状态ProgressBar</string>
     <string name="main_button_9_text">ListView</string>
+    <string name="main_button_10_text">RecyclerView</string>
+    <string name="main_button_11_text">消息对话列表</string>
     <string name="main_menu_item_1_title">add</string>
     <string name="main_menu_item_2_title">remove</string>
     <string name="main_menu_item_3_title">退出应用</string>
@@ -20,10 +22,16 @@
     <string name="my_information_button_1_text">按钮</string>
 
     <string name="home_button_1_text">数据返回main页面</string>
+    <string name="home_button_home_fragment_text">首页</string>
+    <string name="home_button_mylist_fragment_text">列表</string>
 
     <string name="dialog_text_1">我是对对话框</string>
 
     <string name="title_textview_text">我是titel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hf_text_view_1_text">我是home也得的fragment</string>
+    <string name="mlf_text_view_1_text">我是list也的fragment</string>
 
 
 </resources>

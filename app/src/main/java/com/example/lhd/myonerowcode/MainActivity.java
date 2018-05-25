@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
         EditText mainEditText1 = (EditText) findViewById(R.id.main_editText_1);
         Button mainButton8 = (Button) findViewById(R.id.main_button_8);
         Button mainButton9 = (Button) findViewById(R.id.main_button_9);
+        Button mainButton10 = (Button) findViewById(R.id.main_button_10);
+        Button mainButton11 = (Button) findViewById(R.id.main_button_11);
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
         mainButton1.setOnClickListener(new View.OnClickListener() {
@@ -201,6 +203,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ListViewActivity.class);     //显式 intent
+                startActivity(intent);
+            }
+        });
+        mainButton10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);     //显式 intent
+                startActivity(intent);
+            }
+        });
+        mainButton11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MessageConversationListActivity.class);     //显式 intent
                 startActivity(intent);
             }
         });

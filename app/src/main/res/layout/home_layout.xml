@@ -1,18 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/home_button_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_button_1_text" />
+    <!--<Button-->
+    <!--android:id="@+id/home_button_1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/home_button_1_text" />-->
 
-    <TextView
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="home哈哈哈哈哈哈哈"-->
+    <!--android:textSize="100px" />-->
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.example.lhd.myonerowcode.fragment.MyListFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="home哈哈哈哈哈哈哈"
-        android:textSize="100px" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!--<fragment-->
+    <!--android:id="@+id/home_my_list_fragment"-->
+    <!--android:name="com.example.lhd.myonerowcode.fragment.MyListFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/home_button_home_fragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableTop="@drawable/shouye_on"
+            android:text="@string/home_button_home_fragment_text" />
+
+        <Button
+            android:id="@+id/home_button_mylist_fragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableTop="@drawable/shezhi_on"
+            android:text="@string/home_button_home_fragment_text" />
+
+    </LinearLayout>
 </LinearLayout>

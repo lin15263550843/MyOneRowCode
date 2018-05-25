@@ -43,7 +43,10 @@
             android:name=".common.DialogActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".ListViewActivity" />
-        <activity android:name=".RecyclerViewActivity"></activity>
+        <activity android:name=".RecyclerViewActivity" />
+        <activity android:name=".entity.TestTwoItemsActivity" />
+        <activity android:name=".MessageConversationListActivity" />
+        <activity android:name=".entity.MessageItemActivity"></activity>
     </application>
 
 </manifest>

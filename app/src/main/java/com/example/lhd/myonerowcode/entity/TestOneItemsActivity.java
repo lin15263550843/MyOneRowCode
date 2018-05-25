@@ -1,16 +1,16 @@
-package com.example.lhd.myonerowcode.common;
+package com.example.lhd.myonerowcode.entity;
 
 /**
  * Created by lhd on 2018/5/7.
  */
 
-public class TestOneItems {
+public class TestOneItemsActivity {
     private String id;
     private String name;
     private int imgId;
     private String content;
 
-    public TestOneItems(String id, String name, int imgId, String content) {
+    public TestOneItemsActivity(String id, String name, int imgId, String content) {
         this.id = id;
         this.name = name;
         this.imgId = imgId;

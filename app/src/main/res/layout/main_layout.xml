@@ -91,4 +91,19 @@
         android:text="@string/main_button_9_text"
         android:textAllCaps="false"
         android:textColor="@color/colorRed" />
+
+    <Button
+        android:id="@+id/main_button_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_10_text"
+        android:textAllCaps="false"
+        android:textColor="@color/colorRed" />
+    <Button
+        android:id="@+id/main_button_11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_11_text"
+        android:textAllCaps="false"
+        android:textColor="@color/colorRed" />
 </LinearLayout>

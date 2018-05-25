@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.lhd.myonerowcode.common.TestOneItems;
+import com.example.lhd.myonerowcode.entity.TestOneItemsActivity;
 
 import java.util.List;
 
@@ -18,16 +18,16 @@ import java.util.List;
  * Created by lhd on 2018/5/7.
  */
 
-public class TestOneAdapter extends ArrayAdapter<TestOneItems> {
+public class TestOneAdapter extends ArrayAdapter<TestOneItemsActivity> {
 
     private int resourceId;
 
-    public TestOneAdapter(@NonNull Context context, int textViewResourceId, @NonNull List<TestOneItems> objects) {
+    public TestOneAdapter(@NonNull Context context, int textViewResourceId, @NonNull List<TestOneItemsActivity> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }
 
-//    public TestOneAdapter(Context context, int textViewResourceId, List<TestOneItems> objects) {
+//    public TestOneAdapter(Context context, int textViewResourceId, List<TestOneItemsActivity> objects) {
 //        super(context, textViewResourceId, objects);
 //        resourceId = textViewResourceId;
 //    }
@@ -37,7 +37,7 @@ public class TestOneAdapter extends ArrayAdapter<TestOneItems> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        TestOneItems testOneItems = getItem(position);
+        TestOneItemsActivity testOneItemsActivity = getItem(position);
         View view;
         ViewHolder viewHolder;
         if (convertView == null) {
@@ -54,12 +54,12 @@ public class TestOneAdapter extends ArrayAdapter<TestOneItems> {
 //        ImageView testOneImageView = (ImageView) view.findViewById(R.id.test_one_imageView);
 //        TextView testOneTextViewName = (TextView) view.findViewById(R.id.test_one_textView_1);
 //        TextView testOneTextViewContent = (TextView) view.findViewById(R.id.test_one_textView_2);
-//        testOneImageView.setImageResource(testOneItems.getImgId());
-//        testOneTextViewName.setText(testOneItems.getName());
-//        testOneTextViewContent.setText(testOneItems.getContent());
-        viewHolder.testOneImageView.setImageResource(testOneItems.getImgId());
-        viewHolder.testOneTextViewName.setText(testOneItems.getName());
-        viewHolder.testOneTextViewContent.setText(testOneItems.getContent());
+//        testOneImageView.setImageResource(testOneItemsActivity.getImgId());
+//        testOneTextViewName.setText(testOneItemsActivity.getName());
+//        testOneTextViewContent.setText(testOneItemsActivity.getContent());
+        viewHolder.testOneImageView.setImageResource(testOneItemsActivity.getImgId());
+        viewHolder.testOneTextViewName.setText(testOneItemsActivity.getName());
+        viewHolder.testOneTextViewContent.setText(testOneItemsActivity.getContent());
 
         return view;
     }

@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorRed"
+    tools:context="com.example.lhd.myonerowcode.fragment.MyListFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/mlf_text_view_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/mlf_text_view_1_text"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
