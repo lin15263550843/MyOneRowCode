@@ -23,6 +23,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonMyListFragment;
     Drawable shouyeOff;
     Drawable shouyeOn;
+    Drawable shezhiOff;
+    Drawable shezhiOn;
 
     @Override
     public void onBackPressed() {
@@ -58,16 +60,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //        });
         shouyeOff = getResources().getDrawable(R.drawable.shouye_off);
         shouyeOn = getResources().getDrawable(R.drawable.shouye_on);
+        shezhiOff = getResources().getDrawable(R.drawable.shezhi_off);
+        shezhiOn = getResources().getDrawable(R.drawable.shezhi_on);
+
         shouyeOff.setBounds(0, 0, 50, 50);  //第一0是距左边距离，第二0是距上边距离，40分别是长宽
         shouyeOn.setBounds(0, 0, 50, 50);   //第一0是距左边距离，第二0是距上边距离，40分别是长宽
+        shezhiOff.setBounds(0, 0, 50, 50);  //第一0是距左边距离，第二0是距上边距离，40分别是长宽
+        shezhiOn.setBounds(0, 0, 50, 50);   //第一0是距左边距离，第二0是距上边距离，40分别是长宽
+
         buttonHomeFragment = (Button) findViewById(R.id.home_button_home_fragment);
         buttonMyListFragment = (Button) findViewById(R.id.home_button_mylist_fragment);
         buttonHomeFragment.setOnClickListener(this);
         buttonMyListFragment.setOnClickListener(this);
-
         buttonHomeFragment.setCompoundDrawables(null, shouyeOn, null, null);
-        buttonMyListFragment.setCompoundDrawables(null, shouyeOff, null, null);
-
+        buttonMyListFragment.setCompoundDrawables(null, shezhiOff, null, null);
+        replaceFragment(new HomeFragment());
     }
 
     @Override
@@ -75,14 +82,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.home_button_home_fragment:
                 buttonHomeFragment.setCompoundDrawables(null, shouyeOn, null, null);
-                buttonMyListFragment.setCompoundDrawables(null, shouyeOff, null, null);
-                Toast.makeText(this, "首页", Toast.LENGTH_SHORT).show();
+                buttonMyListFragment.setCompoundDrawables(null, shezhiOff, null, null);
+//                Toast.makeText(this, "首页", Toast.LENGTH_SHORT).show();
                 replaceFragment(new HomeFragment());
                 break;
             case R.id.home_button_mylist_fragment:
                 buttonHomeFragment.setCompoundDrawables(null, shouyeOff, null, null);
-                buttonMyListFragment.setCompoundDrawables(null, shouyeOn, null, null);
-                Toast.makeText(this, "列表", Toast.LENGTH_SHORT).show();
+                buttonMyListFragment.setCompoundDrawables(null, shezhiOn, null, null);
+//                Toast.makeText(this, "列表", Toast.LENGTH_SHORT).show();
+                replaceFragment(new MyListFragment());
                 break;
             default:
                 Toast.makeText(this, "default", Toast.LENGTH_SHORT).show();
@@ -94,7 +102,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.home_fragment, fragment);
+        fragmentTransaction.replace(R.id.home_dynamic_fragment, fragment);
         fragmentTransaction.commit();
     }
 }
