@@ -1,4 +1,4 @@
-package com.example.lhd.myonerowcode;
+package com.example.lhd.myonerowcode.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lhd.myonerowcode.R;
 import com.example.lhd.myonerowcode.entity.TestTwoItemsActivity;
 
 import java.util.List;

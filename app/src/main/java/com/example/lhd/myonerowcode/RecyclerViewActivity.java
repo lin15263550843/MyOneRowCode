@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
+import com.example.lhd.myonerowcode.adapter.TestTwoAdapter;
 import com.example.lhd.myonerowcode.entity.TestTwoItemsActivity;
 
 import java.util.ArrayList;

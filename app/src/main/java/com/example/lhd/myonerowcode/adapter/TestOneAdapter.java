@@ -1,4 +1,4 @@
-package com.example.lhd.myonerowcode;
+package com.example.lhd.myonerowcode.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.lhd.myonerowcode.R;
 import com.example.lhd.myonerowcode.entity.TestOneItemsActivity;
 
 import java.util.List;
