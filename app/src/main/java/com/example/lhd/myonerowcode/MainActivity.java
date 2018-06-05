@@ -1,8 +1,5 @@
 package com.example.lhd.myonerowcode;
 
-import android.app.Activity;
-import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -21,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lhd.myonerowcode.broadcast.BroadcastTestActivity;
 import com.example.lhd.myonerowcode.common.DialogActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -105,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         Button mainButton9 = (Button) findViewById(R.id.main_button_9);
         Button mainButton10 = (Button) findViewById(R.id.main_button_10);
         Button mainButton11 = (Button) findViewById(R.id.main_button_11);
+        Button mainButton12 = (Button) findViewById(R.id.main_button_12);
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
         mainButton1.setOnClickListener(new View.OnClickListener() {
@@ -217,6 +216,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MessageConversationListActivity.class);     //显式 intent
+                startActivity(intent);
+            }
+        });
+
+        mainButton12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, BroadcastTestActivity.class);     //显式 intent
                 startActivity(intent);
             }
         });

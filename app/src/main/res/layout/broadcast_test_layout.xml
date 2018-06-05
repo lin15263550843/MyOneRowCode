@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lhd.myonerowcode.broadcast.BroadcastTestActivity">
+
+    <Button
+        android:id="@+id/broadcast_test_button_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1000px"
+        android:text="我是广播test页面de返回" />
+
+    <Button
+        android:id="@+id/broadcast_test_button_send_broadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送自定义广播" />
+
+    <Button
+        android:id="@+id/broadcast_test_button_local_broadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送本地广播" />
+
+
+</android.support.constraint.ConstraintLayout>

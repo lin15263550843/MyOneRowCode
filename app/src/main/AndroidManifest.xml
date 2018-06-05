@@ -5,8 +5,12 @@
     <!-- 请注意添加网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 非危险权限，不需要运行时请求，Manifest文件中添加即可 -->
+    <!-- 访问系统网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 全局弹出对话框（悬浮窗口） -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 监听系统开机广播权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <!-- 请注意<application/>标签中的name属性值, 必须为您的Application类 -->
     <application
@@ -44,9 +48,29 @@
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".ListViewActivity" />
         <activity android:name=".RecyclerViewActivity" />
-        <activity android:name=".entity.TestTwoItemsActivity" />
         <activity android:name=".MessageConversationListActivity" />
-        <activity android:name=".entity.MessageItemActivity"></activity>
+        <activity android:name=".broadcast.BroadcastTestActivity" />
+
+        <receiver
+            android:name=".broadcast.BootCompleteReceiver"
+            android:enabled="true"
+            android:exported="true">
+
+            <!-- enabled属性表示是否启用这个广播接收器 -->
+            <!-- exported属性表示是否允许这个广播接收器接收本程序以外的广播 -->
+            <!-- Android系统启动完成后会发出一条值为android.intent.action.BOOT_COMPLETED的广播，因此我们在<intent-filter>标签里添加了相应的action。另外，监听系统开机广播也是需要声明权限的 -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".broadcast.MyBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.lhd.myonerowcode.broadcast.MY_BROADCAST_RECEIVER" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
