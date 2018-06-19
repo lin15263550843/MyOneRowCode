@@ -20,8 +20,9 @@ import android.widget.Toast;
 
 import com.example.lhd.myonerowcode.broadcast.BroadcastTestActivity;
 import com.example.lhd.myonerowcode.common.DialogActivity;
+import com.example.lhd.myonerowcode.service.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 
     @Override   //添加右上角菜单
@@ -98,12 +99,13 @@ public class MainActivity extends AppCompatActivity {
         Button mainButton5 = (Button) findViewById(R.id.main_button_5);
         Button mainButton6 = (Button) findViewById(R.id.main_button_6);
         Button mainButton7 = (Button) findViewById(R.id.main_button_7);
-        EditText mainEditText1 = (EditText) findViewById(R.id.main_editText_1);
+//        EditText mainEditText1 = (EditText) findViewById(R.id.main_editText_1);
         Button mainButton8 = (Button) findViewById(R.id.main_button_8);
         Button mainButton9 = (Button) findViewById(R.id.main_button_9);
         Button mainButton10 = (Button) findViewById(R.id.main_button_10);
         Button mainButton11 = (Button) findViewById(R.id.main_button_11);
         Button mainButton12 = (Button) findViewById(R.id.main_button_12);
+        Button mainButton13 = (Button) findViewById(R.id.main_button_13);
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
         mainButton1.setOnClickListener(new View.OnClickListener() {
@@ -225,6 +227,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, BroadcastTestActivity.class);     //显式 intent
                 startActivity(intent);
+            }
+        });
+
+        mainButton13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent("com.example.lhd.myonerowcode.FORCE_OFFLINE");
+                sendBroadcast(intent);
+
             }
         });
 

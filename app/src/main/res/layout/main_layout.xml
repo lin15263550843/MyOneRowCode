@@ -61,15 +61,15 @@
         android:layout_height="wrap_content"
         android:text="@string/main_button_6_text" />
 
-    <EditText
-        android:id="@+id/main_editText_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="@string/main_editText_1_text"
-        android:maxLines="3"
-        android:padding="10sp"
-        android:textColorHint="@color/colorAccent" />
+    <!--<EditText-->
+        <!--android:id="@+id/main_editText_1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@null"-->
+        <!--android:hint="@string/main_editText_1_text"-->
+        <!--android:maxLines="3"-->
+        <!--android:padding="10sp"-->
+        <!--android:textColorHint="@color/colorAccent" />-->
 
     <Button
         android:id="@+id/main_button_8"
@@ -111,6 +111,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/main_button_12_text"
+        android:textAllCaps="false"
+        android:textColor="@color/colorRed" />
+    <Button
+        android:id="@+id/main_button_13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_13_text"
         android:textAllCaps="false"
         android:textColor="@color/colorRed" />
 </LinearLayout>
