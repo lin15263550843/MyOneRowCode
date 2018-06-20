@@ -35,6 +35,9 @@ import com.example.lhd.myonerowcode.service.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 
+    public final static int REQUEST_READ_PHONE_STATE = 1;   //自定义的申请权限结果的返回参数
+
+    TelephonyManager telephonyManager;  //存放设备信息
     String IMEI = null;     //序列号IMEI
     String android_id = null;     //android_id
     String getLine1Number = null;     //手机号码
@@ -267,9 +270,9 @@ public class MainActivity extends BaseActivity {
         mainButton14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TelephonyManager telephonyManager = (TelephonyManager) MainActivity.this.getSystemService(Context.TELEPHONY_SERVICE);
-                int checkPermission = ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_PHONE_STATE);
-                if (checkPermission != PackageManager.PERMISSION_GRANTED) {
+                telephonyManager = (TelephonyManager) MainActivity.this.getSystemService(Context.TELEPHONY_SERVICE);
+                int permissionCheck = ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_PHONE_STATE);
+                if (permissionCheck != PackageManager.PERMISSION_GRANTED) { //如果应用之前请求过此权限但用户拒绝了请求，将返回 true。
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
                     // here to request the missing permissions, and then overriding
@@ -277,56 +280,121 @@ public class MainActivity extends BaseActivity {
                     //                                          int[] grantResults)
                     // to handle the case where the user grants the permission. See the documentation
                     // for ActivityCompat#requestPermissions for more details.
-                    return;
+                    // return;
+
+                    //申请权限，字符串数组内是一个或多个要申请的权限，1是申请权限结果的返回参数，在onRequestPermissionsResult可以得知申请结果
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
+//                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)) {
+//                        //这里可以写个对话框之类的项向用户解释为什么要申请权限，并在对话框的确认键后续再次申请权限
+//                    } else {
+//                        //申请权限，字符串数组内是一个或多个要申请的权限，1是申请权限结果的返回参数，在onRequestPermissionsResult可以得知申请结果
+//                        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
+//                    }
                 } else {
-                    IMEI = telephonyManager.getDeviceId();
-                    getLine1Number = telephonyManager.getLine1Number();     //手机号码
-                    getSimSerialNumber = telephonyManager.getSimSerialNumber();     //手机卡序列号
-                    getSubscriberId = telephonyManager.getSubscriberId();     //IMSI
-                    getSimCountryIso = telephonyManager.getSimCountryIso();     //手机卡国家
-                    getSimOperatorName = telephonyManager.getSimOperatorName();     //运营商名字
-                    getNetworkOperatorName = telephonyManager.getNetworkOperatorName();     //返回移动网络运营商的名字(SPN)
-                    getPhoneType = telephonyManager.getPhoneType();     //返回移动网络运营商的名字(SPN)
+                    getDeviceInformation();
                 }
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("提示");
-                builder.setMessage("IMEI: " + IMEI);
-                builder.setCancelable(false);
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //  android_id = Settings.Secure.getString(MainActivity.this.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-                        android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);   //android_id
-                        WifiManager wifi = (WifiManager) MainActivity.this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                        WifiInfo info = wifi.getConnectionInfo();
-                        getMacAddress = info.getMacAddress();    //mac地址
-                        RELEASE = Build.VERSION.RELEASE;    //获取系统版本字符串。如4.1.2 或2.2 或2.3等
-                        SDK_INT = Build.VERSION.SDK_INT;    //SDK	系统的API级别 一般使用下面大的SDK_INT 来查看
-                        getRadioVersion = Build.getRadioVersion();//	无线电固件版本号，通常是不可用的
-
-                        Log.v(TAG, "IMEI: " + IMEI);
-                        Log.v(TAG, "getLine1Number: " + getLine1Number);
-                        Log.v(TAG, "getSimSerialNumber: " + getSimSerialNumber);
-                        Log.v(TAG, "getSubscriberId: " + getSubscriberId);
-                        Log.v(TAG, "getSimCountryIso: " + getSimCountryIso);
-                        Log.v(TAG, "getSimOperatorName: " + getSimOperatorName);
-                        Log.v(TAG, "getNetworkOperatorName: " + getNetworkOperatorName);
-                        Log.v(TAG, "getPhoneType: " + getPhoneType);
-                        Log.v(TAG, "RELEASE: " + RELEASE);
-                        Log.v(TAG, "getMacAddress: " + getMacAddress);
-                        Log.v(TAG, "android_id: " + android_id);
-                        Log.v(TAG, "Build.VERSION.SDK_INT: " + SDK_INT);
-                        Log.v(TAG, "Build.VERSION.RELEASE: " + RELEASE);
-                        Log.v(TAG, "Build.getRadioVersion: " + getRadioVersion);
-                    }
-                });
-                builder.show();
 
             }
         });
 
 
+    }
+
+    //有权限时，获取设备信息
+    public void getDeviceInformation() {
+
+        int permissionCheck = ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_PHONE_STATE);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            // return;
+            //申请权限，字符串数组内是一个或多个要申请的权限，1是申请权限结果的返回参数，在onRequestPermissionsResult可以得知申请结果
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
+
+        } else {
+            IMEI = telephonyManager.getDeviceId();
+            getLine1Number = telephonyManager.getLine1Number();     //手机号码
+            getSimSerialNumber = telephonyManager.getSimSerialNumber();     //手机卡序列号
+            getSubscriberId = telephonyManager.getSubscriberId();     //IMSI
+            getSimCountryIso = telephonyManager.getSimCountryIso();     //手机卡国家
+            getSimOperatorName = telephonyManager.getSimOperatorName();     //运营商名字
+            getNetworkOperatorName = telephonyManager.getNetworkOperatorName();     //返回移动网络运营商的名字(SPN)
+            getPhoneType = telephonyManager.getPhoneType();     //返回移动网络运营商的名字(SPN)
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("提示");
+            builder.setMessage("IMEI: " + IMEI);
+            builder.setCancelable(false);
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //  android_id = Settings.Secure.getString(MainActivity.this.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+                    android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);   //android_id
+                    WifiManager wifi = (WifiManager) MainActivity.this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                    WifiInfo info = wifi.getConnectionInfo();
+                    getMacAddress = info.getMacAddress();    //mac地址
+                    RELEASE = Build.VERSION.RELEASE;    //获取系统版本字符串。如4.1.2 或2.2 或2.3等
+                    SDK_INT = Build.VERSION.SDK_INT;    //SDK	系统的API级别 一般使用下面大的SDK_INT 来查看
+                    getRadioVersion = Build.getRadioVersion();//	无线电固件版本号，通常是不可用的
+
+                    Log.v(TAG, "IMEI: " + IMEI);
+                    Log.v(TAG, "getLine1Number: " + getLine1Number);
+                    Log.v(TAG, "getSimSerialNumber: " + getSimSerialNumber);
+                    Log.v(TAG, "getSubscriberId: " + getSubscriberId);
+                    Log.v(TAG, "getSimCountryIso: " + getSimCountryIso);
+                    Log.v(TAG, "getSimOperatorName: " + getSimOperatorName);
+                    Log.v(TAG, "getNetworkOperatorName: " + getNetworkOperatorName);
+                    Log.v(TAG, "getPhoneType: " + getPhoneType);
+                    Log.v(TAG, "RELEASE: " + RELEASE);
+                    Log.v(TAG, "getMacAddress: " + getMacAddress);
+                    Log.v(TAG, "android_id: " + android_id);
+                    Log.v(TAG, "Build.VERSION.SDK_INT: " + SDK_INT);
+                    Log.v(TAG, "Build.VERSION.RELEASE: " + RELEASE);
+                    Log.v(TAG, "Build.getRadioVersion: " + getRadioVersion);
+                }
+            });
+            builder.show();
+        }
+    }
+
+    /**
+     * Callback for the result from requesting permissions. This method
+     * is invoked for every call on {@link #requestPermissions(String[], int)}.
+     * <p>
+     * <strong>Note:</strong> It is possible that the permissions request interaction
+     * with the user is interrupted. In this case you will receive empty permissions
+     * and results arrays which should be treated as a cancellation.
+     * </p>
+     *
+     * @param requestCode  The request code passed in {@link #requestPermissions(String[], int)}.
+     * @param permissions  The requested permissions. Never null.
+     * @param grantResults The grant results for the corresponding permissions
+     *                     which is either {@link PackageManager#PERMISSION_GRANTED}
+     *                     or {@link PackageManager#PERMISSION_DENIED}. Never null.
+     * @see #requestPermissions(String[], int)
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_READ_PHONE_STATE) {
+            for (int i = 0; i < permissions.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    Log.v(TAG, "onRequestPermissionsResult: 权限" + permissions[i] + "申请成功");
+//                    Toast.makeText(this, "" + "权限" + permissions[i] + "申请成功", Toast.LENGTH_SHORT).show();
+                    getDeviceInformation();
+                } else {
+//                    Log.v(TAG, "onRequestPermissionsResult: 权限" + permissions[i] + "申请失败");
+                    Toast.makeText(this, "" + "权限申请失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
     @Override
