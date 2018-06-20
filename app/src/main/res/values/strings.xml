@@ -17,6 +17,7 @@
     <string name="main_button_11_text">消息对话列表</string>
     <string name="main_button_12_text">Broadcast</string>
     <string name="main_button_13_text">强制下线</string>
+    <string name="main_button_14_text">获取设备IMEI</string>
     <string name="main_menu_item_1_title">add</string>
     <string name="main_menu_item_2_title">remove</string>
     <string name="main_menu_item_3_title">退出应用</string>

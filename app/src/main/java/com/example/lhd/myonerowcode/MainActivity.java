@@ -1,12 +1,22 @@
 package com.example.lhd.myonerowcode;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Build;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,9 +30,24 @@ import android.widget.Toast;
 
 import com.example.lhd.myonerowcode.broadcast.BroadcastTestActivity;
 import com.example.lhd.myonerowcode.common.DialogActivity;
+import com.example.lhd.myonerowcode.service.ActivityCollector;
 import com.example.lhd.myonerowcode.service.BaseActivity;
 
 public class MainActivity extends BaseActivity {
+
+    String IMEI = null;     //序列号IMEI
+    String android_id = null;     //android_id
+    String getLine1Number = null;     //手机号码
+    String getSimSerialNumber = null;     //手机卡序列号
+    String getSubscriberId = null;     //IMSI
+    String getSimCountryIso = null;     //手机卡国家
+    String getSimOperatorName = null;     //运营商名字
+    String getNetworkOperatorName = null;     //返回移动网络运营商的名字(SPN)
+    int getPhoneType;     //返回移动网络运营商的名字(SPN)
+    String getMacAddress = null;     //mac地址
+    String getRadioVersion = null;     //无线电固件版本号，通常是不可用的
+    String RELEASE = null;     //获取系统版本字符串。如4.1.2 或2.2 或2.3等
+    int SDK_INT;     //系统的API级别 一般使用下面大的SDK_INT 来查看
     private static final String TAG = "MainActivity";
 
     @Override   //添加右上角菜单
@@ -106,6 +131,7 @@ public class MainActivity extends BaseActivity {
         Button mainButton11 = (Button) findViewById(R.id.main_button_11);
         Button mainButton12 = (Button) findViewById(R.id.main_button_12);
         Button mainButton13 = (Button) findViewById(R.id.main_button_13);
+        Button mainButton14 = (Button) findViewById(R.id.main_button_14);
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
         mainButton1.setOnClickListener(new View.OnClickListener() {
@@ -235,6 +261,67 @@ public class MainActivity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent("com.example.lhd.myonerowcode.FORCE_OFFLINE");
                 sendBroadcast(intent);
+
+            }
+        });
+        mainButton14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TelephonyManager telephonyManager = (TelephonyManager) MainActivity.this.getSystemService(Context.TELEPHONY_SERVICE);
+                int checkPermission = ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_PHONE_STATE);
+                if (checkPermission != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                } else {
+                    IMEI = telephonyManager.getDeviceId();
+                    getLine1Number = telephonyManager.getLine1Number();     //手机号码
+                    getSimSerialNumber = telephonyManager.getSimSerialNumber();     //手机卡序列号
+                    getSubscriberId = telephonyManager.getSubscriberId();     //IMSI
+                    getSimCountryIso = telephonyManager.getSimCountryIso();     //手机卡国家
+                    getSimOperatorName = telephonyManager.getSimOperatorName();     //运营商名字
+                    getNetworkOperatorName = telephonyManager.getNetworkOperatorName();     //返回移动网络运营商的名字(SPN)
+                    getPhoneType = telephonyManager.getPhoneType();     //返回移动网络运营商的名字(SPN)
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("提示");
+                builder.setMessage("IMEI: " + IMEI);
+                builder.setCancelable(false);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //  android_id = Settings.Secure.getString(MainActivity.this.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+                        android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);   //android_id
+                        WifiManager wifi = (WifiManager) MainActivity.this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                        WifiInfo info = wifi.getConnectionInfo();
+                        getMacAddress = info.getMacAddress();    //mac地址
+                        RELEASE = Build.VERSION.RELEASE;    //获取系统版本字符串。如4.1.2 或2.2 或2.3等
+                        SDK_INT = Build.VERSION.SDK_INT;    //SDK	系统的API级别 一般使用下面大的SDK_INT 来查看
+                        getRadioVersion = Build.getRadioVersion();//	无线电固件版本号，通常是不可用的
+
+                        Log.v(TAG, "IMEI: " + IMEI);
+                        Log.v(TAG, "getLine1Number: " + getLine1Number);
+                        Log.v(TAG, "getSimSerialNumber: " + getSimSerialNumber);
+                        Log.v(TAG, "getSubscriberId: " + getSubscriberId);
+                        Log.v(TAG, "getSimCountryIso: " + getSimCountryIso);
+                        Log.v(TAG, "getSimOperatorName: " + getSimOperatorName);
+                        Log.v(TAG, "getNetworkOperatorName: " + getNetworkOperatorName);
+                        Log.v(TAG, "getPhoneType: " + getPhoneType);
+                        Log.v(TAG, "RELEASE: " + RELEASE);
+                        Log.v(TAG, "getMacAddress: " + getMacAddress);
+                        Log.v(TAG, "android_id: " + android_id);
+                        Log.v(TAG, "Build.VERSION.SDK_INT: " + SDK_INT);
+                        Log.v(TAG, "Build.VERSION.RELEASE: " + RELEASE);
+                        Log.v(TAG, "Build.getRadioVersion: " + getRadioVersion);
+                    }
+                });
+                builder.show();
 
             }
         });
