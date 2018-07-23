@@ -3,6 +3,7 @@
     package="com.example.lhd.myonerowcode">
 
     <!-- 请注意添加网络权限 -->
+    <!-- tetsetstsetestsestst -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 非危险权限，不需要运行时请求，Manifest文件中添加即可 -->
