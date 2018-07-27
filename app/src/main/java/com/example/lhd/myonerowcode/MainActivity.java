@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.example.lhd.myonerowcode.broadcast.BroadcastTestActivity;
 import com.example.lhd.myonerowcode.common.DialogActivity;
+import com.example.lhd.myonerowcode.dataLocalStorage.DataLocalStorageActivity;
 import com.example.lhd.myonerowcode.service.ActivityCollector;
 import com.example.lhd.myonerowcode.service.BaseActivity;
 
@@ -135,6 +136,8 @@ public class MainActivity extends BaseActivity {
         Button mainButton12 = (Button) findViewById(R.id.main_button_12);
         Button mainButton13 = (Button) findViewById(R.id.main_button_13);
         Button mainButton14 = (Button) findViewById(R.id.main_button_14);
+        Button storageButton = (Button) findViewById(R.id.main_button_storage_15);
+
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
         mainButton1.setOnClickListener(new View.OnClickListener() {
@@ -293,8 +296,14 @@ public class MainActivity extends BaseActivity {
                 } else {
                     getDeviceInformation();
                 }
+            }
+        });
 
-
+        storageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, DataLocalStorageActivity.class);
+                startActivity(intent);
             }
         });
 

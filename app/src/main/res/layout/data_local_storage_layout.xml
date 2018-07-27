@@ -1,0 +1,83 @@
+<!--<?xml version="1.0" encoding="utf-8"?>--><!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--tools:context="com.example.lhd.myonerowcode.dataLocalStorage.DataLocalStorageActivity">-->
+
+<!--</android.support.constraint.ConstraintLayout>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/data_local_storage_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="填写将要存储的数据" />
+
+    <Button
+        android:id="@+id/data_local_storage_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存数据到文件" />
+
+    <Button
+        android:id="@+id/data_local_storage_button_get"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="读取文件的数据" />
+
+    <TextView
+        android:id="@+id/data_local_storage_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/hello_world" />
+
+    <Button
+        android:id="@+id/data_local_storage_button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="存储到SharedPreferences中" />
+
+    <!--android:textAllCaps="false" 控制大小写-->
+    <Button
+        android:id="@+id/data_local_storage_button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="从SharedPreferences中读取"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/data_local_storage_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/hello_world" />
+
+
+    <Button
+        android:id="@+id/data_local_storage_sql"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="创建sqlLite数据库"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/data_local_storage_sql_get"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="读取sqlLite数据库"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/data_local_storage__sql_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/hello_world" />
+</LinearLayout>
