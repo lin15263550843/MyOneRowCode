@@ -36,7 +36,8 @@ import com.example.lhd.myonerowcode.service.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 
-    public final static int REQUEST_READ_PHONE_STATE = 1;   //自定义的申请权限结果的返回参数
+    public final static int REQUEST_READ_PHONE_STATE = 1;   //自定义的申请权限结果的返回参数  获取版本信息的权限
+    public final static int REQUEST_READ_PHONE_STATE_2 = 2;   //自定义的申请权限结果的返回参数  获取版本信息的权限
 
     TelephonyManager telephonyManager;  //存放设备信息
     String IMEI = null;     //序列号IMEI
@@ -171,9 +172,20 @@ public class MainActivity extends BaseActivity {
         mainButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:17606229741"));
-                startActivity(intent);
+//                Intent intent = new Intent(Intent.ACTION_DIAL);   //ACTION_DIAL为打开拨号界面
+                //运行时权限检查
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_READ_PHONE_STATE_2);
+                } else {
+                    goCall();
+                }
             }
         });
         mainButton5.setOnClickListener(new View.OnClickListener() {
@@ -285,7 +297,7 @@ public class MainActivity extends BaseActivity {
                     // for ActivityCompat#requestPermissions for more details.
                     // return;
 
-                    //申请权限，字符串数组内是一个或多个要申请的权限，1是申请权限结果的返回参数，在onRequestPermissionsResult可以得知申请结果
+                    //申请权限，字符串数组内是一个或多个要申请的权限，REQUEST_READ_PHONE_STATE（1）是申请权限结果的返回参数，在onRequestPermissionsResult可以得知申请结果
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
 //                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)) {
 //                        //这里可以写个对话框之类的项向用户解释为什么要申请权限，并在对话框的确认键后续再次申请权限
@@ -372,6 +384,24 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    public void goCall() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_READ_PHONE_STATE_2);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_CALL);    //ACTION_CALL为打电话动作
+            intent.setData(Uri.parse("tel:17606229741"));
+            startActivity(intent);
+        }
+    }
+
     /**
      * Callback for the result from requesting permissions. This method
      * is invoked for every call on {@link #requestPermissions(String[], int)}.
@@ -387,22 +417,47 @@ public class MainActivity extends BaseActivity {
      *                     which is either {@link PackageManager#PERMISSION_GRANTED}
      *                     or {@link PackageManager#PERMISSION_DENIED}. Never null.
      * @see #requestPermissions(String[], int)
+     * <p>
+     * 在onRequestPermissionsResult可以得知申请结果
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == REQUEST_READ_PHONE_STATE) {
-            for (int i = 0; i < permissions.length; i++) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                    Log.v(TAG, "onRequestPermissionsResult: 权限" + permissions[i] + "申请成功");
+//        if (requestCode == REQUEST_READ_PHONE_STATE) {
+//            for (int i = 0; i < permissions.length; i++) {
+//                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+//                    Log.v(TAG, "onRequestPermissionsResult: 权限" + permissions[i] + "申请成功");
+////                    Toast.makeText(this, "" + "权限" + permissions[i] + "申请成功", Toast.LENGTH_SHORT).show();
+//                    getDeviceInformation();
+//                } else {
+////                    Log.v(TAG, "onRequestPermissionsResult: 权限" + permissions[i] + "申请失败");
+//                    Toast.makeText(this, "" + "权限申请失败", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        }
+        switch (requestCode) {
+            case REQUEST_READ_PHONE_STATE:
+                for (int i = 0; i < permissions.length; i++) {
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                        Log.v(TAG, "onRequestPermissionsResult: 权限" + permissions[i] + "申请成功");
 //                    Toast.makeText(this, "" + "权限" + permissions[i] + "申请成功", Toast.LENGTH_SHORT).show();
-                    getDeviceInformation();
-                } else {
+                        getDeviceInformation();
+                    } else {
 //                    Log.v(TAG, "onRequestPermissionsResult: 权限" + permissions[i] + "申请失败");
+                        Toast.makeText(this, "" + "权限申请失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+            case REQUEST_READ_PHONE_STATE_2:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.v(TAG, "onRequestPermissionsResult: 权限" + permissions[0] + "申请成功");
+                    goCall();
+                } else {
                     Toast.makeText(this, "" + "权限申请失败", Toast.LENGTH_SHORT).show();
                 }
-            }
+                break;
+            default:
+                break;
         }
     }
 
