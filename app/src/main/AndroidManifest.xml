@@ -19,6 +19,7 @@
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
+    <!--读取通讯录权限-->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <!-- 请注意<application/>标签中的name属性值, 必须为您的Application类 -->
