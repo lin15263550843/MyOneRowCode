@@ -140,11 +140,18 @@
                 android:text="@string/main_button_14_text"
                 android:textAllCaps="false"
                 android:textColor="@color/colorRed" />
+
             <Button
                 android:id="@+id/main_button_storage_15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="数据本地存储"/>
+                android:text="数据本地存储" />
+
+            <Button
+                android:id="@+id/content_resolver_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="内容提供器" />
         </LinearLayout>
 
 

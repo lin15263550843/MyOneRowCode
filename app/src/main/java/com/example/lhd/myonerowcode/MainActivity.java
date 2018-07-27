@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.example.lhd.myonerowcode.broadcast.BroadcastTestActivity;
 import com.example.lhd.myonerowcode.common.DialogActivity;
+import com.example.lhd.myonerowcode.contentResolver.ContactPeopleListActivity;
 import com.example.lhd.myonerowcode.dataLocalStorage.DataLocalStorageActivity;
 import com.example.lhd.myonerowcode.service.ActivityCollector;
 import com.example.lhd.myonerowcode.service.BaseActivity;
@@ -137,7 +138,8 @@ public class MainActivity extends BaseActivity {
         Button mainButton12 = (Button) findViewById(R.id.main_button_12);
         Button mainButton13 = (Button) findViewById(R.id.main_button_13);
         Button mainButton14 = (Button) findViewById(R.id.main_button_14);
-        Button storageButton = (Button) findViewById(R.id.main_button_storage_15);
+        Button storageButton15 = (Button) findViewById(R.id.main_button_storage_15);
+        Button contentResolverButton16 = (Button) findViewById(R.id.content_resolver_16);
 
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
@@ -311,15 +313,20 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        storageButton.setOnClickListener(new View.OnClickListener() {
+        storageButton15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, DataLocalStorageActivity.class);
                 startActivity(intent);
             }
         });
-
-
+        contentResolverButton16.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ContactPeopleListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //有权限时，获取设备信息

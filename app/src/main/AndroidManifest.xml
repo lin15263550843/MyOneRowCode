@@ -4,7 +4,7 @@
 
     <!-- 请注意添加网络权限 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--打电话权限-->
+    <!-- 打电话权限 -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 非危险权限，不需要运行时请求，Manifest文件中添加即可 -->
@@ -84,7 +84,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".dataLocalStorage.DataLocalStorageActivity"></activity>
+        <activity android:name=".dataLocalStorage.DataLocalStorageActivity" />
+        <activity android:name=".contentResolver.ContactPeopleListActivity"></activity>
     </application>
 
 </manifest>
