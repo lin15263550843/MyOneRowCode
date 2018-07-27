@@ -66,6 +66,13 @@
         android:textAllCaps="false" />
 
     <Button
+        android:id="@+id/data_local_storage_sql_add_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sqlLite添加数据"
+        android:textAllCaps="false" />
+
+    <Button
         android:id="@+id/data_local_storage_sql_get"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
