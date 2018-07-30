@@ -1,10 +1,15 @@
 package com.example.lhd.myonerowcode;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -12,6 +17,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +40,8 @@ import com.example.lhd.myonerowcode.contentResolver.ContactPeopleListActivity;
 import com.example.lhd.myonerowcode.dataLocalStorage.DataLocalStorageActivity;
 import com.example.lhd.myonerowcode.service.ActivityCollector;
 import com.example.lhd.myonerowcode.service.BaseActivity;
+
+import java.io.File;
 
 public class MainActivity extends BaseActivity {
 
@@ -105,7 +113,7 @@ public class MainActivity extends BaseActivity {
         }
 
         ImageButton titleImageButtonBack = (ImageButton) findViewById(R.id.title_ImageButton_back);
-        ImageButton titleImageButton1 = (ImageButton) findViewById(R.id.title_ImageButton_1);
+        final ImageButton titleImageButton1 = (ImageButton) findViewById(R.id.title_ImageButton_1);
         TextView titleTextView = (TextView) findViewById(R.id.title_textview);
         titleTextView.setText("main页面");
         titleImageButtonBack.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +148,7 @@ public class MainActivity extends BaseActivity {
         Button mainButton14 = (Button) findViewById(R.id.main_button_14);
         Button storageButton15 = (Button) findViewById(R.id.main_button_storage_15);
         Button contentResolverButton16 = (Button) findViewById(R.id.content_resolver_16);
+        Button notificationBar17 = (Button) findViewById(R.id.main_notification_bar_17);
 
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
@@ -267,7 +276,6 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-
         mainButton12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -275,13 +283,11 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-
         mainButton13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent("com.example.lhd.myonerowcode.FORCE_OFFLINE");
                 sendBroadcast(intent);
-
             }
         });
         mainButton14.setOnClickListener(new View.OnClickListener() {
@@ -312,7 +318,6 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
-
         storageButton15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -325,6 +330,51 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ContactPeopleListActivity.class);
                 startActivity(intent);
+            }
+        });
+        notificationBar17.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("com.example.lhd.myonerowcode.MyInformationActivity");     //隐式 intent
+                intent.addCategory("com.example.lhd.myonerowcode.MyInformationActivity");
+
+                // 可以把 PendingIntent 简单的理解为延迟执行的 Intent ； 提供了 getActivity()  getService()  getBroadcast() 等方法，接收参数相同
+                // 四个参数，第一个：Context ；第二个：一般用不到，通常传入0；第三个：Intent 对象；第四个：用于确定PendingIntent行为，有 FLAG_ONE_SHOT 、FLAG_NO_CREATE 、FLAG_CANCEL_CURRENT 、FLAG_UPDATE_CURRENT 这4种值可选，通常传0就可以了
+                PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
+                // 通知栏通知
+                // NotificationManager用来对通知进行管理   ;   getSystemService()方法接收一个字符串参数，用于确定获取系统的哪个服务
+                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                // 接下来需要使用一个 Builder 构造器来创建 Notification 对象，但问题在于，几乎 Android 系统的每一个版本都会对通知这部分功能进行或多或少的修改，API 不稳定性问题在通知上面突显得尤其严重。
+                // 那么该如何解决这个问题呢？其实解决方案我们之前已经见过好几回了，就是使用 support 库中提供的兼容 API。
+                // support-v4 库中提供了一个 NotificationCompat 类，使用这个类的构造器来创建 Notification 对象，就可以保证我们的程序在所有 Android 系统版本上都能正常工作了，代码如下所示：
+                // Notification notification = new NotificationCompat.Builder(context).build();
+                // 当然，上述代码只是创建了一个空的 Notification 对象，并没有什么实际作用，我们可以在最终的 build（）方法之前连缀任意多的设置方法来创建一个丰富的 Notification 对象，先来看一些最基本的设置：
+                // 一共调用了 5 个设置方法，下拉系统状态栏就可以看到这部分内容
+                Notification notification = new NotificationCompat.Builder(MainActivity.this)
+                        .setContentTitle("第一行代码通知栏标题")              // setContentTitle() 方法用于指定通知的标题内容
+                        .setContentText("我是第一行代码通知栏的内容，略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~")  // setContentText() 方法用于指定通知的正文内容
+                        .setWhen(System.currentTimeMillis())               // setWhen() 方法用于指定通知被创建的时间，以毫秒为单位，当下拉系统状态栏时，这里指定的时间会显示在相应的通知上
+                        .setSmallIcon(R.mipmap.ic_launcher)                // setSmallIcon() 方法用于设置通知的小图标，注意只能使用纯 alpha 图层的图片进行设置，小图标会显示在系统状态栏上
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)) // setLargeIcon（）方法用于设置通知的大图标，当下拉系统状态栏时，就可以看到设置的大图标了
+//                        .setSound(Uri.fromFile(new File("/system/media/audio/ringtones/Bell.ogg"))) //发出通知的时候播放音频
+//                        .setVibrate(new long[]{0, 1000, 1000, 1000, 1000, 1000})    //手机振动，隔一秒振动一下
+                        .setLights(Color.GREEN, 1000, 1000)   // 手机LED灯效果；三个参数：颜色   亮起时长   暗去的时长
+//                        .setDefaults(NotificationCompat.DEFAULT_ALL)     // 通知的默认效果，它会根据当前手机的环境来决定播放什么铃声，以及如何振动
+                        .setContentIntent(pendingIntent)                   // 通知栏的点击动作
+                        .setAutoCancel(true)                               // 点击通知栏的消息后关闭消息，隐式调用
+                        //显式过长的内容，不会省略号
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText("我是第一行代码通知栏的内容，略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~略略略~"))
+                        //显示一张图片
+//                        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.message_lefts)))
+                        .setPriority(NotificationCompat.PRIORITY_MAX)   //消息的重要程度: PRIORITY_MIN < PRIORITY_LOW < PRIORITY_DEFAULT < PRIORITY_HIGH < PRIORITY_MAX
+                        .build();
+                // 以上工作都完成之后，只需要调用 NotificationManager 的 notify（）方法就可以让通知显示出来了。
+                // notify（）方法接收两个参数，第一个参数是 id，要保证为每个通知所指定的 id 都是不同的。第二个参数则是 Notification 对象，这里直接将我们刚刚创建好的 Notification 对象传人即可。因此，显示一个通知就可以写成：
+                assert notificationManager != null;
+                notificationManager.notify(1, notification);
+
+//                NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//                manager.cancel(1);  //显式调用cancel()关闭通知栏消息，参数为消息id
             }
         });
     }
