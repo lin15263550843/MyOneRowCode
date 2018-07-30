@@ -149,6 +149,7 @@ public class MainActivity extends BaseActivity {
         Button storageButton15 = (Button) findViewById(R.id.main_button_storage_15);
         Button contentResolverButton16 = (Button) findViewById(R.id.content_resolver_16);
         Button notificationBar17 = (Button) findViewById(R.id.main_notification_bar_17);
+        Button mainMedia18 = (Button) findViewById(R.id.main_media_18);
 
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
@@ -375,6 +376,13 @@ public class MainActivity extends BaseActivity {
 
 //                NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 //                manager.cancel(1);  //显式调用cancel()关闭通知栏消息，参数为消息id
+            }
+        });
+        mainMedia18.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MediaUseActivity.class);
+                startActivity(intent);
             }
         });
     }

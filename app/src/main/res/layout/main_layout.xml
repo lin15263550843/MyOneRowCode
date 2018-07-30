@@ -158,6 +158,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="通知栏通知" />
+
+            <Button
+                android:id="@+id/main_media_18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="打开媒体设备" />
         </LinearLayout>
 
 
