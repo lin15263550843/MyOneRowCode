@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <!--<root-path path="" name="camera_photos" />-->
+        <external-path name="name" path="" />
+    </paths>
+</resources>
+
+
+<!--其中，external-path 就是用来指定 Uri 共享的，name 属性的值可以随便填，path 属性的值表示共享的具体路径。-->
+<!--这里设置空值就表示将整个 SD 卡进行共享，当然你也可以仅共享我们存放 output_ image. Jpg 这张图片的路径。-->
+
+<!--从Android官方文档上可以看出FileProvider提供以下几种path类型：-->
+
+<!--<files-path path="" name="camera_photos" />-->
+    <!--该方式提供在应用的内部存储区的文件/子目录的文件。它对应Context.getFilesDir返回的路径：eg:”/data/data/com.jph.simple/files”。-->
+
+<!--<cache-path name="name" path="path" />-->
+    <!--该方式提供在应用的内部存储区的缓存子目录的文件。它对应getCacheDir返回的路径：eg:“/data/data/com.jph.simple/cache”；-->
+
+<!--<external-path name="name" path="path" />-->
+    <!--该方式提供在外部存储区域根目录下的文件。它对应Environment.getExternalStorageDirectory返回的路径：eg:”/storage/emulated/0”;-->
+
+<!--<external-files-path name="name" path="path" />-->
+    <!--该方式提供在应用的外部存储区根目录的下的文件。它对应Context#getExternalFilesDir(String) Context.getExternalFilesDir(null)返回的路径。eg:”/storage/emulated/0/Android/data/com.jph.simple/files”。-->
+
+<!--<external-cache-path name="name" path="path" />-->
+    <!--该方式提供在应用的外部缓存区根目录的文件。它对应Context.getExternalCacheDir()返回的路径。eg:”/storage/emulated/0/Android/data/com.jph.simple/cache”。-->
+
+
+<!--https://blog.csdn.net/fengyuzhengfan/article/details/52876586-->
+<!--从上述代码中可以看出FileProvider支持的path类型中有个TAG_ROOT_PATH，它对应的值为root-path，root-path在Android官方文档中是没有提及的，但我们不妨试一下，将FileProvider的path设置成root-path，看能否支持外置SD卡：-->

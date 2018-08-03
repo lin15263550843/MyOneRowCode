@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 打电话权限 -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 网络访问权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 非危险权限，不需要运行时请求，Manifest文件中添加即可 -->
     <!-- 访问系统网络状态 -->
@@ -17,7 +18,9 @@
     <!-- 监听系统开机广播权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <!-- 允许程序获取应用的文件大小 -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- 允许程序读取短信内容 -->
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <!-- 读取通讯录权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -25,6 +28,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- 手机振动权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!--申请存储空间权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--另外还有一点要注意，在 Android4.4 系统之前，访问 SD 卡的应用关联目录也是要声明权限的，从 4.4 系统开始不再需要权限声明。那么我们为了能够兼容老版本系统的手机，还需要在 AndroidManifest. Xml 中声明一下访问 SD 卡的权限：-->
 
     <!-- 请注意<application/>标签中的name属性值, 必须为您的Application类 -->
     <application
@@ -67,6 +73,9 @@
         <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".MessageConversationListActivity" />
         <activity android:name=".broadcast.BroadcastTestActivity" />
+        <activity android:name=".dataLocalStorage.DataLocalStorageActivity" />
+        <activity android:name=".contentResolver.ContactPeopleListActivity" />
+        <activity android:name=".MediaUseActivity" />
 
         <receiver
             android:name=".broadcast.BootCompleteReceiver"
@@ -89,9 +98,14 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".dataLocalStorage.DataLocalStorageActivity" />
-        <activity android:name=".contentResolver.ContactPeopleListActivity" />
-        <activity android:name=".MediaUseActivity"></activity>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.cameraalbumtest.fileprovider"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
