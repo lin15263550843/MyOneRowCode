@@ -2,6 +2,7 @@ package com.example.lhd.myonerowcode;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,8 +14,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class HttpURLConnectionActivity extends AppCompatActivity {
 
+    private static final String TAG = "HttpURLConnectionActivi";
     TextView connectionContent;
 
     @Override
@@ -23,6 +31,7 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
         setContentView(R.layout.http_url_connection_layout);
 
         Button initiateRequest = findViewById(R.id.http_url_connection_Initiate_request);
+        Button okHttpInitiateRequest = findViewById(R.id.okhttp_Initiate_request);
         connectionContent = findViewById(R.id.http_url_connection_content);
 
         initiateRequest.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +40,55 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
                 sendRequestWithHttpURLConnection();
             }
         });
+        okHttpInitiateRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendRequestWithOkHttp();
+            }
+        });
+    }
+
+    // 使用 okHttp 发起请求
+    private void sendRequestWithOkHttp() {
+        // 开启子线程 来发起网络请求 ***** 注意，一定要开启子线程，否则会报错
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();   // 创建 OkHttpClient 实例
+                    RequestBody rb = new FormBody.Builder()     // 创建 RequestBody 对象来存放待提交的参数
+                            .add("userid", "01416271")
+                            .add("POSTSOURCEID", "")
+                            .add("POSTSOURCESYS", "")
+                            .add("arrow", "all")
+                            .add("cacheMinId", "")
+                            .add("isConcern", "all")
+                            .add("isNew", "")
+                            .add("lastMinId", "")
+                            .add("pageSize", "10")
+                            .add("searchDay", "")
+                            .add("searchKey", "")
+                            .add("searchMonth", "")
+                            .add("searchWeek", "")
+                            .add("searchYear", "")
+                            .add("showType", "show")
+                            .add("taskStatus", "")
+                            .add("taskType", "")
+                            .add("userPk", "8700319417")
+                            .build();
+                    Request request = new Request.Builder()    // 创建 Request 对象
+                            .url("http://testhaier.jushanghui.com/bspfront/blog/listDisplay")  //设置请求地址
+                            .post(rb)
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    Log.d(TAG, "sendRequestWithOkHttp: " + responseData);
+                    showResponse(responseData);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     // 发起http请求

@@ -1,16 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lhd.myonerowcode.HttpURLConnectionActivity">
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/http_url_connection_Initiate_request"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="发起请求" />
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/http_url_connection_Initiate_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="发起请求" />
+
+        <Button
+            android:id="@+id/okhttp_Initiate_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用okHttp发起请求" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,4 +32,4 @@
             android:layout_height="wrap_content" />
     </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
