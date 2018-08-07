@@ -28,10 +28,10 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- 手机振动权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <!--申请存储空间权限-->
+    <!-- 申请存储空间权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--另外还有一点要注意，在 Android4.4 系统之前，访问 SD 卡的应用关联目录也是要声明权限的，从 4.4 系统开始不再需要权限声明。那么我们为了能够兼容老版本系统的手机，还需要在 AndroidManifest. Xml 中声明一下访问 SD 卡的权限：-->
 
+    <!-- 另外还有一点要注意，在 Android4.4 系统之前，访问 SD 卡的应用关联目录也是要声明权限的，从 4.4 系统开始不再需要权限声明。那么我们为了能够兼容老版本系统的手机，还需要在 AndroidManifest. Xml 中声明一下访问 SD 卡的权限： -->
     <!-- 请注意<application/>标签中的name属性值, 必须为您的Application类 -->
     <application
         android:icon="@mipmap/ic_launcher"
@@ -106,6 +106,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <activity android:name=".common.OpenWebVIewActivity"></activity>
     </application>
 
 </manifest>

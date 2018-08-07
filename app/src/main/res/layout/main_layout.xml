@@ -164,6 +164,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="打开媒体设备" />
+
+            <Button
+                android:id="@+id/main_web_view_19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WebView使用"
+                android:textAllCaps="false" />
         </LinearLayout>
 
 
