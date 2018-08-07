@@ -171,10 +171,15 @@
                 android:layout_height="wrap_content"
                 android:text="WebView使用"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/main_http_url_connection_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="HttpURLConnection请求"
+                android:textAllCaps="false" />
         </LinearLayout>
 
-
     </ScrollView>
-
 
 </LinearLayout>

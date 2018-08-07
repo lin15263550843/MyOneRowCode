@@ -107,7 +107,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".common.OpenWebVIewActivity"></activity>
+        <activity android:name=".common.OpenWebVIewActivity" />
+        <activity android:name=".HttpURLConnectionActivity"></activity>
     </application>
 
 </manifest>

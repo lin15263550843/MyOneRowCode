@@ -152,6 +152,7 @@ public class MainActivity extends BaseActivity {
         Button notificationBar17 = (Button) findViewById(R.id.main_notification_bar_17);
         Button mainMedia18 = (Button) findViewById(R.id.main_media_18);
         Button webView19 = (Button) findViewById(R.id.main_web_view_19);
+        Button httpURLConnection20 = (Button) findViewById(R.id.main_http_url_connection_20);
 
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
@@ -391,6 +392,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, OpenWebVIewActivity.class);
+                startActivity(intent);
+            }
+        });
+        httpURLConnection20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HttpURLConnectionActivity.class);
                 startActivity(intent);
             }
         });
