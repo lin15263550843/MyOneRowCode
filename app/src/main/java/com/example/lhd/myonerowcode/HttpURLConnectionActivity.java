@@ -7,12 +7,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.lhd.myonerowcode.entity.GSONEntity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -32,6 +42,7 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
 
         Button initiateRequest = findViewById(R.id.http_url_connection_Initiate_request);
         Button okHttpInitiateRequest = findViewById(R.id.okhttp_Initiate_request);
+        Button analysisJsonDataButton = findViewById(R.id.Analysis_json_data);
         connectionContent = findViewById(R.id.http_url_connection_content);
 
         initiateRequest.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +57,68 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
                 sendRequestWithOkHttp();
             }
         });
+        analysisJsonDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                analysisJsonData();
+            }
+        });
+    }
+
+    // 请求本地的 json 格式数据
+    private void analysisJsonData() {
+        // 开启子线程
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url("http://10.168.3.61:8888/getActivityList.json")  // 指定请求地址
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    showResponse(responseData);
+                    parseJSONWIthJSONObject(responseData);
+                    parseJSONWIthGSON(responseData);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    // 使用 JSONObject 和 JSONArray 解析 json 格式数据
+    private void parseJSONWIthJSONObject(String responseData) {
+        try {
+            JSONObject jsonObject = new JSONObject(responseData);
+            JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
+            for (int i = 0; jsonArray.length() > i; i++) {
+                JSONObject jo = jsonArray.getJSONObject(i);
+                String name = jo.getString("name");
+                Log.d(TAG, "parseJSONWIthJSONObject: ============ " + name);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 使用 GSON 解析 json 格式数据
+    private void parseJSONWIthGSON(String responseData) {
+        try {
+            JSONObject jsonObject = new JSONObject(responseData);
+            Gson gson = new Gson();
+//        GSONEntity gsonEntity = gson.fromJson(responseData, GSONEntity.class);
+            List<GSONEntity> gsonList = gson.fromJson(jsonObject.getString("data"), new TypeToken<List<GSONEntity>>() {
+            }.getType());
+            for (GSONEntity ge : gsonList) {
+//                Log.d(TAG, "parseJSONWIthGSON: ======" + ge.getCode());
+                Log.d(TAG, "parseJSONWIthGSON: ======" + ge.getName());
+//                Log.d(TAG, "parseJSONWIthGSON: ======" + ge.getPrice());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     // 使用 okHttp 发起请求
@@ -56,31 +129,32 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
             public void run() {
                 try {
                     OkHttpClient client = new OkHttpClient();   // 创建 OkHttpClient 实例
-                    RequestBody rb = new FormBody.Builder()     // 创建 RequestBody 对象来存放待提交的参数
-                            .add("userid", "01416271")
-                            .add("POSTSOURCEID", "")
-                            .add("POSTSOURCESYS", "")
-                            .add("arrow", "all")
-                            .add("cacheMinId", "")
-                            .add("isConcern", "all")
-                            .add("isNew", "")
-                            .add("lastMinId", "")
-                            .add("pageSize", "10")
-                            .add("searchDay", "")
-                            .add("searchKey", "")
-                            .add("searchMonth", "")
-                            .add("searchWeek", "")
-                            .add("searchYear", "")
-                            .add("showType", "show")
-                            .add("taskStatus", "")
-                            .add("taskType", "")
-                            .add("userPk", "8700319417")
-                            .build();
+//                    RequestBody rb = new FormBody.Builder()     // 创建 RequestBody 对象来存放待提交的参数
+//                            .add("userid", "01416271")
+//                            .add("POSTSOURCEID", "")
+//                            .add("POSTSOURCESYS", "")
+//                            .add("arrow", "all")
+//                            .add("cacheMinId", "")
+//                            .add("isConcern", "all")
+//                            .add("isNew", "")
+//                            .add("lastMinId", "")
+//                            .add("pageSize", "10")
+//                            .add("searchDay", "")
+//                            .add("searchKey", "")
+//                            .add("searchMonth", "")
+//                            .add("searchWeek", "")
+//                            .add("searchYear", "")
+//                            .add("showType", "show")
+//                            .add("taskStatus", "")
+//                            .add("taskType", "")
+//                            .add("userPk", "8700319417")
+//                            .build();
                     Request request = new Request.Builder()    // 创建 Request 对象
-                            .url("http://testhaier.jushanghui.com/bspfront/blog/listDisplay")  //设置请求地址
-                            .post(rb)
+                            .url("https://m.baidu.com/?from=1014629y")  //设置请求地址
+//                            .url("http://testhaier.jushanghui.com/bspfront/blog/listDisplay")  //设置请求地址
+//                            .post(rb)
                             .build();
-                    Response response = client.newCall(request).execute();
+                    Response response = client.newCall(request).execute();  // execute() 方法来发送请求并获取服务器返回的数据
                     String responseData = response.body().string();
                     Log.d(TAG, "sendRequestWithOkHttp: " + responseData);
                     showResponse(responseData);
@@ -113,6 +187,7 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
                     while ((line = reader.readLine()) != null) {
                         response.append(line);
                     }
+                    Log.d(TAG, "sendRequestWithOkHttp: " + response.toString());
                     showResponse(response.toString());
                 } catch (Exception e) {
                     e.printStackTrace();

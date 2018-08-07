@@ -20,6 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="使用okHttp发起请求" />
+
+        <Button
+            android:id="@+id/Analysis_json_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="解析json格式数据"
+            android:textAllCaps="false" />
     </LinearLayout>
 
     <ScrollView
