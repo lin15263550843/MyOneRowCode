@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.lhd.myonerowcode.entity.GSONEntity;
+import com.example.lhd.myonerowcode.service.HttpCallbackListener;
+import com.example.lhd.myonerowcode.service.HttpUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -24,6 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -43,6 +46,7 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
         Button initiateRequest = findViewById(R.id.http_url_connection_Initiate_request);
         Button okHttpInitiateRequest = findViewById(R.id.okhttp_Initiate_request);
         Button analysisJsonDataButton = findViewById(R.id.Analysis_json_data);
+        Button encapsulationHttpRequest = findViewById(R.id.encapsulation_http_request);
         connectionContent = findViewById(R.id.http_url_connection_content);
 
         initiateRequest.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +67,12 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
                 analysisJsonData();
             }
         });
+        encapsulationHttpRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HttpUtilHttpRequest();
+            }
+        });
     }
 
     // 请求本地的 json 格式数据
@@ -79,13 +89,51 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
                     Response response = client.newCall(request).execute();
                     String responseData = response.body().string();
                     showResponse(responseData);
-                    parseJSONWIthJSONObject(responseData);
                     parseJSONWIthGSON(responseData);
+                    parseJSONWIthJSONObject(responseData);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+    // 使用封装的 http 请求
+    private void HttpUtilHttpRequest() {
+        String url = "http://10.168.3.61:8888/getActivityList.json";
+        HttpUtil.sendOkHttpRequest(url, new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // 在这里对异常情况进行处理
+                Log.d(TAG, "onFailure: 请求失败");
+                Log.d(TAG, e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //得到服务器返回的具体内容
+                String responseData = response.body().string();
+                showResponse(responseData);
+                parseJSONWIthGSON(responseData);
+                parseJSONWIthJSONObject(responseData);
+            }
+        });
+        HttpUtil.sendHttpURLConnectionRequest(url, new HttpCallbackListener() {
+            @Override
+            public void onSuccess(String response) {
+                //得到服务器返回的具体内容
+//                showResponse(response);  // 请求回来的数据不好看
+                parseJSONWIthGSON(response);
+                parseJSONWIthJSONObject(response);
+            }
+
+            @Override
+            public void onError(Exception error) {
+                // 在这里对异常情况进行处理
+                Log.d(TAG, "onError: 请求失败");
+                Log.d(TAG, error.getMessage());
+            }
+        });
     }
 
     // 使用 JSONObject 和 JSONArray 解析 json 格式数据
