@@ -34,6 +34,13 @@
             android:layout_height="wrap_content"
             android:text="使用封装的http请求"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/sub_thread_update_ui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="子线程中更新UI"
+            android:textAllCaps="false" />
     </LinearLayout>
 
     <ScrollView

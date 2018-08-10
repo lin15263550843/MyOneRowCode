@@ -1,5 +1,8 @@
 package com.example.lhd.myonerowcode;
 
+import android.annotation.SuppressLint;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,7 +39,25 @@ import okhttp3.Response;
 public class HttpURLConnectionActivity extends AppCompatActivity {
 
     private static final String TAG = "HttpURLConnectionActivi";
-    TextView connectionContent;
+    private static final int UPDATE_TEXT = 1;
+    private TextView connectionContent;
+
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+            switch (msg.what) {
+                case UPDATE_TEXT:
+                    // 在这里可以进行UI更新；
+                    connectionContent.setText("我是在子线程中更新的内容，略略略~~~~");
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +68,7 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
         Button okHttpInitiateRequest = findViewById(R.id.okhttp_Initiate_request);
         Button analysisJsonDataButton = findViewById(R.id.Analysis_json_data);
         Button encapsulationHttpRequest = findViewById(R.id.encapsulation_http_request);
+        Button subThreadUpdateUi = findViewById(R.id.sub_thread_update_ui);
         connectionContent = findViewById(R.id.http_url_connection_content);
 
         initiateRequest.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +95,26 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
                 HttpUtilHttpRequest();
             }
         });
+        subThreadUpdateUi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                subThreadUpdateUiFun();
+            }
+        });
+    }
+
+    // 子线程中更新UI
+    private void subThreadUpdateUiFun() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // connectionContent.setText("我是在子线程中更新的内容，略略略~~~~");  // 这样直接在子线程中更新UI程序会崩溃的
+                // 利用解析异步消息处理机制，子线程中更新UI
+                Message message = new Message();
+                message.what = UPDATE_TEXT;
+                handler.sendMessage(message);   // 将 Message 对象发送出去
+            }
+        }).start();
     }
 
     // 请求本地的 json 格式数据
