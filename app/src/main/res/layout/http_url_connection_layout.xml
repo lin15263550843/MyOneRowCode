@@ -41,6 +41,13 @@
             android:layout_height="wrap_content"
             android:text="子线程中更新UI"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/asynctask_update_ui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用AsyncTask更新UI"
+            android:textAllCaps="false" />
     </LinearLayout>
 
     <ScrollView
@@ -50,7 +57,8 @@
         <TextView
             android:id="@+id/http_url_connection_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center" />
     </ScrollView>
 
 </LinearLayout>

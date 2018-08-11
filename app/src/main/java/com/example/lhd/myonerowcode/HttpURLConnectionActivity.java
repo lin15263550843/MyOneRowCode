@@ -1,6 +1,7 @@
 package com.example.lhd.myonerowcode;
 
 import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Call;
@@ -69,6 +71,7 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
         Button analysisJsonDataButton = findViewById(R.id.Analysis_json_data);
         Button encapsulationHttpRequest = findViewById(R.id.encapsulation_http_request);
         Button subThreadUpdateUi = findViewById(R.id.sub_thread_update_ui);
+        Button asyncTaskUpdateUi = findViewById(R.id.asynctask_update_ui);
         connectionContent = findViewById(R.id.http_url_connection_content);
 
         initiateRequest.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +102,12 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 subThreadUpdateUiFun();
+            }
+        });
+        asyncTaskUpdateUi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new myTestTask().execute();
             }
         });
     }
@@ -219,30 +228,16 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
             public void run() {
                 try {
                     OkHttpClient client = new OkHttpClient();   // 创建 OkHttpClient 实例
-//                    RequestBody rb = new FormBody.Builder()     // 创建 RequestBody 对象来存放待提交的参数
-//                            .add("userid", "01416271")
-//                            .add("POSTSOURCEID", "")
-//                            .add("POSTSOURCESYS", "")
-//                            .add("arrow", "all")
-//                            .add("cacheMinId", "")
-//                            .add("isConcern", "all")
-//                            .add("isNew", "")
-//                            .add("lastMinId", "")
-//                            .add("pageSize", "10")
-//                            .add("searchDay", "")
-//                            .add("searchKey", "")
-//                            .add("searchMonth", "")
-//                            .add("searchWeek", "")
-//                            .add("searchYear", "")
-//                            .add("showType", "show")
-//                            .add("taskStatus", "")
-//                            .add("taskType", "")
-//                            .add("userPk", "8700319417")
-//                            .build();
+                    RequestBody rb = new FormBody.Builder()     // 创建 RequestBody 对象来存放待提交的参数
+                            .add("userId", "01416271")
+                            .add("roleCode", "hejshywzc_new")
+                            .add("shopId", "8800125026")
+                            .add("token", "MDEyODkxMzNAMTUzMzk2ODQ4MDI4Ng==")
+                            .build();
                     Request request = new Request.Builder()    // 创建 Request 对象
                             .url("https://m.baidu.com/?from=1014629y")  //设置请求地址
-//                            .url("http://testhaier.jushanghui.com/bspfront/blog/listDisplay")  //设置请求地址
-//                            .post(rb)
+                            .url("http://testhaier.jushanghui.com/bspfront/myShop/marketFixReport")  //设置请求地址
+                            .post(rb)
                             .build();
                     Response response = client.newCall(request).execute();  // execute() 方法来发送请求并获取服务器返回的数据
                     String responseData = response.body().string();
@@ -314,5 +309,66 @@ public class HttpURLConnectionActivity extends AppCompatActivity {
                 connectionContent.setText(s);
             }
         });
+    }
+
+    /**
+     * 首先来看一下 Asynctask 的基本用法，由于 Asynctask 是一个抽象类，所以如果我们想使用它，就必须要创建一个子类去继承它。
+     * 在继承时我们可以为 Asynctask 类指定 3 个泛型参数，这 3 个参数的用途如下。
+     * ロ Params。在执行 Async Task 时需要传人的参数，可用于在后台任务中使用。
+     * 口 Progress。后台任务执行时，如果需要在界面上显示当前的进度，则使用这里指定的泛型作为进度单位。
+     * ロ Result。当任务执行完毕后，如果需要对结果进行返回，则使用这里指定的泛型作为返回值类型。
+     * <p>
+     * 这里我们把 Asynctask 的第一个泛型参数指定为 void，表示在执行 Async Task 的时候不需要传入参数给后台任务。
+     * 第二个泛型参数指定为 Integer，表示使用整型数据来作为进度显示单位。
+     * 第三个泛型参数指定为 Boolean，则表示使用布尔型数据来反馈执行结果。
+     */
+    class myTestTask extends AsyncTask<Void, Integer, Boolean> {
+        int timer = 10;
+
+        @Override
+        protected void onPreExecute() {
+//            super.onPreExecute();
+            // 这个方法会在后台任务开始执行之前调用，用于进行一些界面上的初始化操作，比如显示个进度条对话框等。
+            Log.d(TAG, "onPreExecute: 开始任务~~~");
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            // 这个方法中的所有代码都会在子线程中运行，我们应该在这里去处理所有的耗时任务。
+            // 任务旦完成就可以通过 return 语句来将任务的执行结果返回，如果 AsyncTask 的第三个泛型参数指定的是 Void，就可以不返回任务执行结果。
+            // 注意，在这个方法中是不可以进行 UI 操作的，如果需要更新 UI 元素，比如说反馈当前任务的执行进度，可以调用 publishProgress(Progress...）方法来完成。
+            while (timer > 0) {
+                try {
+                    timer--;
+                    publishProgress(timer);
+                    Log.d(TAG, "doInBackground: 任务执行中=============" + timer);
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return true;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+//            super.onProgressUpdate(values);
+            // 当在后台任务中调用了 publishProgress(Progress...）方法后，onProgressUpdate(Progress...）方法就会很快被调用，该方法中携带的参数就是在后台任务中传递过来的。
+            // 在这个方法中可以对 UI 进行操作，利用参数中的数值就可以对界面元素进行相应的更新。
+            Log.d(TAG, "onProgressUpdate: ============" + Arrays.toString(values));
+            connectionContent.setText(String.valueOf(values[0]));   // 在这里更新进度
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+//            super.onPostExecute(aBoolean);
+            // 当后台任务执行完毕并通过 return 语句进行返回时，这个方法就很快会被调用。
+            // 返回的数据会作为参数传递到此方法中，可以利用返回的数据来进行一些 UI 操作，比如说提醒任务执行的结果，以及关闭掉进度条对话框等。
+            if (aBoolean) {
+                Log.d(TAG, "onPreExecute: 任务成功执行完了~~~" + true);
+            } else {
+                Log.d(TAG, "onPreExecute: 任务执行失败~~~" + aBoolean);
+            }
+        }
     }
 }
