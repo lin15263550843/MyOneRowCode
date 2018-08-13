@@ -108,7 +108,14 @@
         </provider>
 
         <activity android:name=".common.OpenWebVIewActivity" />
-        <activity android:name=".HttpURLConnectionActivity"></activity>
+        <activity android:name=".HttpURLConnectionActivity" />
+
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".service.myTestServiceActivity"></activity>
     </application>
 
 </manifest>

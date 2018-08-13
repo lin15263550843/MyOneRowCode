@@ -178,6 +178,13 @@
                 android:layout_height="wrap_content"
                 android:text="HttpURLConnection请求"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/main_my_test_service_21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="自定义Service"
+                android:textAllCaps="false" />
         </LinearLayout>
 
     </ScrollView>

@@ -41,6 +41,7 @@ import com.example.lhd.myonerowcode.contentResolver.ContactPeopleListActivity;
 import com.example.lhd.myonerowcode.dataLocalStorage.DataLocalStorageActivity;
 import com.example.lhd.myonerowcode.service.ActivityCollector;
 import com.example.lhd.myonerowcode.service.BaseActivity;
+import com.example.lhd.myonerowcode.service.myTestServiceActivity;
 
 import java.io.File;
 
@@ -153,6 +154,7 @@ public class MainActivity extends BaseActivity {
         Button mainMedia18 = (Button) findViewById(R.id.main_media_18);
         Button webView19 = (Button) findViewById(R.id.main_web_view_19);
         Button httpURLConnection20 = (Button) findViewById(R.id.main_http_url_connection_20);
+        Button myTestService21 = (Button) findViewById(R.id.main_my_test_service_21);
 
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
@@ -399,6 +401,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, HttpURLConnectionActivity.class);
+                startActivity(intent);
+            }
+        });
+        myTestService21.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, myTestServiceActivity.class);
                 startActivity(intent);
             }
         });
