@@ -1,10 +1,17 @@
 package com.example.lhd.myonerowcode.service;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import com.example.lhd.myonerowcode.MainActivity;
+import com.example.lhd.myonerowcode.R;
 
 
 /**
@@ -66,11 +73,31 @@ public class MyService extends Service {
     public void onCreate() {    // 服务创建的时候调用
         super.onCreate();
         Log.d(TAG, "onCreate: 创建服务=============================onCreate");
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("我是消息的头部")
+                .setContentText("我是消息内容")
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                .setContentIntent(pi)
+                .build();
+        startForeground(1, notification);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {  //  每次服务启动的时候调用
         Log.d(TAG, "onStartCommand: 每次启动服务=============================onStartCommand");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 处理具体逻辑
+                // .........
+                // .........
+                stopSelf(); // 结束线程
+            }
+        });
         return super.onStartCommand(intent, flags, startId);
     }
 

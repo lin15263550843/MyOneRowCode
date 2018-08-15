@@ -6,6 +6,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,6 +14,7 @@ import com.example.lhd.myonerowcode.R;
 
 public class myTestServiceActivity extends AppCompatActivity {
 
+    private static final String TAG = "myTestServiceActivity";
     private MyService.DownloadBinder downloadBinder;
 
     /**
@@ -45,6 +47,7 @@ public class myTestServiceActivity extends AppCompatActivity {
         Button closeService = findViewById(R.id.my_test_service_close);
         final Button bindService = findViewById(R.id.my_test_service_bind);
         final Button unbindService = findViewById(R.id.my_test_service_unbind);
+        Button startIntentService = findViewById(R.id.my_test_intent_service_start);
 
         openService.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +80,14 @@ public class myTestServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 unbindService(connection); // 解绑服务
+            }
+        });
+        startIntentService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: 主线程的id：" + Thread.currentThread().getId());
+                Intent intentService = new Intent(myTestServiceActivity.this, MyIntentService.class);
+                startService(intentService);
             }
         });
     }

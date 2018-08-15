@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="关闭自定义服务"
         android:textAllCaps="false" />
+
     <Button
         android:id="@+id/my_test_service_bind"
         android:layout_width="match_parent"
@@ -34,5 +35,11 @@
         android:text="解绑服务"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/my_test_intent_service_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开启IntentService"
+        android:textAllCaps="false" />
 
 </LinearLayout>
