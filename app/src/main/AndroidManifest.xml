@@ -39,6 +39,11 @@
         android:roundIcon="@mipmap/ic_mytouxiang_big"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--百度地图-->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="aRFcidULjFhjZDHXCOGjgDpzq0qlhGxG" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <data android:scheme="growing.588f2d5cf04e66dd" />

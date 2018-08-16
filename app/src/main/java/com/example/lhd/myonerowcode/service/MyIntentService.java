@@ -7,6 +7,7 @@ import android.util.Log;
 
 /**
  * Created by dhc on 2018/8/15.
+ * MyIntentService 在运行完毕后会自动停止子线程。
  */
 
 public class MyIntentService extends IntentService {
