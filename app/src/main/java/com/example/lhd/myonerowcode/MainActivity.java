@@ -155,6 +155,7 @@ public class MainActivity extends BaseActivity {
         Button webView19 = (Button) findViewById(R.id.main_web_view_19);
         Button httpURLConnection20 = (Button) findViewById(R.id.main_http_url_connection_20);
         Button myTestService21 = (Button) findViewById(R.id.main_my_test_service_21);
+        Button baiduLocate22 = (Button) findViewById(R.id.main_baidu_locate_22);
 
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
@@ -408,6 +409,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, myTestServiceActivity.class);
+                startActivity(intent);
+            }
+        });
+        baiduLocate22.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BaiduLocateTestActivity.class);
                 startActivity(intent);
             }
         });
