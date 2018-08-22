@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/toolbar_backup"
+        android:icon="@drawable/center"
+        android:title="备用"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/toolbar_delete"
+        android:icon="@drawable/cancel"
+        android:title="删除"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/toolbar_settings"
+        android:icon="@drawable/shezhi_off"
+        android:title="设置"
+        app:showAsAction="ifRoom" />
+</menu>
+
+
+    <!--app:showAsAction 来指定按钮的显示位置--><!--注意 Toolbar 中的 action 按钮只会显示图片，菜单中的action按钮只会显示文字-->
