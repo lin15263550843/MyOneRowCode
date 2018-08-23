@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.os.PowerManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -91,6 +92,14 @@ public class MyInformationActivity extends AppCompatActivity {
                 intent.putExtra("my_info_return_data", "我是从myInfo传递到main的数据，拉拉阿拉啦啦啦啦啦啦啦~");
                 MyInformationActivity.this.setResult(RESULT_OK, intent);
                 finish();
+            }
+        });
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.my_info_FloatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MyInformationActivity.this, "点击了浮动按钮", Toast.LENGTH_SHORT).show();
             }
         });
 
