@@ -10,7 +10,7 @@
         android:id="@+id/toolbar_delete"
         android:icon="@drawable/cancel"
         android:title="删除"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/toolbar_settings"
         android:icon="@drawable/shezhi_off"

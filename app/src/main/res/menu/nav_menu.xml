@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <!--checkableBehavior="single" 表示组中的所有菜单项只能单选-->
+        <item
+            android:id="@+id/nav_menu_item_1"
+            android:icon="@drawable/center"
+            android:title="条目一" />
+        <item
+            android:id="@+id/nav_menu_item_2"
+            android:icon="@drawable/center"
+            android:title="条目二" />
+        <item
+            android:id="@+id/nav_menu_item_3"
+            android:icon="@drawable/center"
+            android:title="条目三" />
+        <item
+            android:id="@+id/nav_menu_item_4"
+            android:icon="@drawable/center"
+            android:title="条目四" />
+        <item
+            android:id="@+id/nav_menu_item_5"
+            android:icon="@drawable/center"
+            android:title="关闭侧边栏" />
+    </group>
+</menu>
+

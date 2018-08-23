@@ -8,6 +8,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.os.PowerManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -46,7 +48,7 @@ public class MyInformationActivity extends AppCompatActivity {
                 break;
             case R.id.toolbar_settings:
 //                Toast.makeText(this, "你点击了设置", Toast.LENGTH_SHORT).show();
-                mDrawerLayout.openDrawer(GravityCompat.START);
+                mDrawerLayout.openDrawer(GravityCompat.START);  // 打开侧边栏
                 break;
             default:
                 break;
@@ -64,6 +66,17 @@ public class MyInformationActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.title_toolbar_common);
         setSupportActionBar(toolbar);
         mDrawerLayout = findViewById(R.id.my_info_drawer);
+        NavigationView navigationView = findViewById(R.id.nav_NavigationView);
+        navigationView.setCheckedItem(R.id.nav_menu_item_1);    // 把条目一设置为默认选中状态
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.nav_menu_item_5) {
+                    mDrawerLayout.closeDrawers();   // 关闭侧边栏
+                }
+                return true;
+            }
+        });
 //        ActionBar ab = getSupportActionBar();
 //        if (ab != null) {
 //            ab.setDisplayHomeAsUpEnabled(true);   // 显示导航栏的侧滑按钮
