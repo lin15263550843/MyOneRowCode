@@ -11,6 +11,7 @@ import android.os.PowerManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -91,7 +92,15 @@ public class MyInformationActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.putExtra("my_info_return_data", "我是从myInfo传递到main的数据，拉拉阿拉啦啦啦啦啦啦啦~");
                 MyInformationActivity.this.setResult(RESULT_OK, intent);
-                finish();
+
+                Snackbar.make(view, "确定返回吗", Snackbar.LENGTH_SHORT)
+                        .setAction("确定", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                finish();
+                            }
+                        })
+                        .show();
             }
         });
 
