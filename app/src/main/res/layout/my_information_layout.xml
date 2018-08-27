@@ -11,16 +11,42 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/title_toolbar_layout" />
-        <!--<com.example.lhd.myonerowcode.common.TitleToolbarActivity--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content" />-->
-
-        <Button
-            android:id="@+id/my_information_button_1"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:text="@string/my_information_button_1_text" />
+            android:layout_height="wrap_content">
+
+            <!--app:layout_scrollFlags="scroll|enterAlways|snap" 作用：向上滑动时隐藏 Toolbar，向下滑动时显示 Toolbar-->
+            <!--当APPBarLayout 接收到滚动事件的时候，它内部的子控件其实是可以指定如何去影响这些事件的，通过 app:layout_scrollFlags 属性就能实现-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/title_toolbar_common"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <!--<include layout="@layout/title_toolbar_layout" />-->
+            <!--<com.example.lhd.myonerowcode.common.TitleToolbarActivity--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content" />-->
+
+            <Button
+                android:id="@+id/my_information_button_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="@string/my_information_button_1_text"
+                android:visibility="gone" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <!--@string/appbar_scrolling_view_behavior 这个字符串也是由 Design Support 库提供的-->
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_info_RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/my_info_FloatingActionButton"

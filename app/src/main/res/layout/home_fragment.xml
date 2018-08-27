@@ -1,16 +1,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context="com.example.lhd.myonerowcode.fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/hf_text_view_1"
-        android:layout_width="match_parent"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_height="match_parent"
-        android:text="@string/hf_text_view_1_text" />
+    <!--<TextView-->
+    <!--android:id="@+id/hf_text_view_1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:text="@string/hf_text_view_1_text"-->
+    <!--android:textSize="25sp"-->
+    <!--android:textStyle="bold" />-->
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        app:cardCornerRadius="5dp">
+
+        <TextView
+            android:id="@+id/home_CardView_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="我是卡片式布局中的内容" />
+    </android.support.v7.widget.CardView>
 </LinearLayout>

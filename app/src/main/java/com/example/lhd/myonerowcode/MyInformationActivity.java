@@ -17,6 +17,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,12 +27,35 @@ import android.widget.Button;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import com.example.lhd.myonerowcode.adapter.CardRecyclerViewAdapter;
+import com.example.lhd.myonerowcode.entity.TestTwoItemsActivity;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class MyInformationActivity extends AppCompatActivity {
     private static final String TAG = "MyInformationActivity";
 
     private DrawerLayout mDrawerLayout;
-//    PowerManager powerManager;
+    //    PowerManager powerManager;
 //    SensorManager sensorManager = null;
+    private TestTwoItemsActivity[] ttias = {
+            new TestTwoItemsActivity("0", "条目一", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目二", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目三", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目四", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目五", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目六", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目七", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目八", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目九", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目十", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目天", R.drawable.center, "内容内容内容"),
+            new TestTwoItemsActivity("0", "条目目", R.drawable.center, "内容内容内容")
+    };
+    private List<TestTwoItemsActivity> cardItemList = new ArrayList<>();
+    private CardRecyclerViewAdapter crvAdapter;
 
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {    // 添加导航栏按钮
@@ -112,6 +137,14 @@ public class MyInformationActivity extends AppCompatActivity {
             }
         });
 
+        initCardList();
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_info_RecyclerView);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);   // 显示几列
+        recyclerView.setLayoutManager(gridLayoutManager);
+        crvAdapter = new CardRecyclerViewAdapter(cardItemList);
+        recyclerView.setAdapter(crvAdapter);
+
+
 //        AudioManager audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
 //        audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
 //        audioManager.setSpeakerphoneOn(false);
@@ -148,5 +181,14 @@ public class MyInformationActivity extends AppCompatActivity {
 //        }, sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_NORMAL);
 
 
+    }
+
+    private void initCardList() {
+        cardItemList.clear();
+        for (int i = 0; i < 50; i++) {
+            Random random = new Random();   // 随机数
+            int index = random.nextInt(ttias.length);
+            cardItemList.add(ttias[index]);
+        }
     }
 }
