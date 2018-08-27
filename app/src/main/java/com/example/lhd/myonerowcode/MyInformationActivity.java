@@ -14,6 +14,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import java.util.Random;
 public class MyInformationActivity extends AppCompatActivity {
     private static final String TAG = "MyInformationActivity";
 
+    private SwipeRefreshLayout swipeRefresh;
     private DrawerLayout mDrawerLayout;
     //    PowerManager powerManager;
 //    SensorManager sensorManager = null;
@@ -144,6 +146,16 @@ public class MyInformationActivity extends AppCompatActivity {
         crvAdapter = new CardRecyclerViewAdapter(cardItemList);
         recyclerView.setAdapter(crvAdapter);
 
+        // 下拉刷新
+        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.my_info_SwipeRefresh);
+        swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {   // 下拉刷新监听器
+                refreshCardList();
+            }
+        });
+
 
 //        AudioManager audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
 //        audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
@@ -181,6 +193,31 @@ public class MyInformationActivity extends AppCompatActivity {
 //        }, sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_NORMAL);
 
 
+    }
+
+    // 下拉刷新执行的方法
+    private void refreshCardList() {
+        cardItemList.clear();
+        crvAdapter.notifyDataSetChanged();  // 通知数据发生了变化
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000); // 将线程沉睡 2s ，因为本地刷新太快了，无法看到效果
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {  // 切回主线程
+                    @Override
+                    public void run() {
+                        initCardList();
+                        crvAdapter.notifyDataSetChanged();  // 通知数据发生了变化
+                        swipeRefresh.setRefreshing(false);  // 传入 false 用于表示刷新事件结束，并隐藏刷新进度条。
+                    }
+                });
+
+            }
+        }).start();
     }
 
     private void initCardList() {

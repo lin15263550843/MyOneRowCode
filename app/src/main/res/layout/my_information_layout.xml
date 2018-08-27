@@ -42,11 +42,19 @@
 
         <!--@string/appbar_scrolling_view_behavior 这个字符串也是由 Design Support 库提供的-->
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_info_RecyclerView"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/my_info_SwipeRefresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/my_info_RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/my_info_FloatingActionButton"
