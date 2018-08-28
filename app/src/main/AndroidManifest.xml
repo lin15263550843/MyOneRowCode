@@ -67,14 +67,17 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="aRFcidULjFhjZDHXCOGjgDpzq0qlhGxG" />
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote">
-            <!--LBS SDK 中的服务-->
+
+            <!-- LBS SDK 中的服务 -->
         </service>
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:label="main主页">
             <intent-filter>
                 <data android:scheme="growing.588f2d5cf04e66dd" />
@@ -94,7 +97,8 @@
             android:name=".LoginActivity"
             android:label="@string/app_name" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".MyInformationActivity"
+        <activity
+            android:name=".MyInformationActivity"
             android:label="我的信息">
             <intent-filter>
                 <action android:name="com.example.lhd.myonerowcode.MyInformationActivity" />
@@ -155,7 +159,7 @@
 
         <activity android:name=".service.myTestServiceActivity" />
         <activity android:name=".BaiduLocateTestActivity" />
-        <activity android:name=".common.TitleToolbarActivity"></activity>
+        <activity android:name=".common.TitleToolbarActivity" />
     </application>
 
 </manifest>

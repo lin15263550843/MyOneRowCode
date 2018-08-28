@@ -92,7 +92,7 @@ public class MyInformationActivity extends AppCompatActivity {
         setContentView(R.layout.my_information_layout);
         Log.v(TAG, "onCreate: MyInformationActivity页面");
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.title_toolbar_common);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_info_toolbar_common);
         setSupportActionBar(toolbar);
         mDrawerLayout = findViewById(R.id.my_info_drawer);
         NavigationView navigationView = findViewById(R.id.nav_NavigationView);

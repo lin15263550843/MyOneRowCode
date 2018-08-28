@@ -192,6 +192,12 @@
                 android:layout_height="wrap_content"
                 android:text="百度地图定位"
                 android:textAllCaps="false" />
+            <Button
+                android:id="@+id/main_collapsing_toolbar_23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CollapsingToolbarLayout"
+                android:textAllCaps="false" />
         </LinearLayout>
 
     </ScrollView>

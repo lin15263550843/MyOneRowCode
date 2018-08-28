@@ -156,6 +156,7 @@ public class MainActivity extends BaseActivity {
         Button httpURLConnection20 = (Button) findViewById(R.id.main_http_url_connection_20);
         Button myTestService21 = (Button) findViewById(R.id.main_my_test_service_21);
         Button baiduLocate22 = (Button) findViewById(R.id.main_baidu_locate_22);
+        Button collapsingToolbar23 = (Button) findViewById(R.id.main_collapsing_toolbar_23);
 
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
@@ -416,6 +417,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, BaiduLocateTestActivity.class);
+                startActivity(intent);
+            }
+        });
+        collapsingToolbar23.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CollapsingToolbarActivity.class);
                 startActivity(intent);
             }
         });

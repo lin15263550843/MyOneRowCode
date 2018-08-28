@@ -18,7 +18,7 @@
             <!--app:layout_scrollFlags="scroll|enterAlways|snap" 作用：向上滑动时隐藏 Toolbar，向下滑动时显示 Toolbar-->
             <!--当APPBarLayout 接收到滚动事件的时候，它内部的子控件其实是可以指定如何去影响这些事件的，通过 app:layout_scrollFlags 属性就能实现-->
             <android.support.v7.widget.Toolbar
-                android:id="@+id/title_toolbar_common"
+                android:id="@+id/my_info_toolbar_common"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
@@ -40,7 +40,7 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <!--@string/appbar_scrolling_view_behavior 这个字符串也是由 Design Support 库提供的-->
+        <!--app:layout_behavior 用于指定布局行为  @string/appbar_scrolling_view_behavior 这个字符串也是由 Design Support 库提供的-->
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/my_info_SwipeRefresh"
