@@ -1,6 +1,7 @@
 package com.example.lhd.myonerowcode;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +16,16 @@ public class CollapsingToolbarActivity extends AppCompatActivity {
 
     private static final String TAG = "CollapsingToolbarActivity";
     public static final String TITLE_NAME = "测试标题名称哈哈哈";
+    Drawable backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collapsing_toolbar_layout);
+
+
+        backButton = getResources().getDrawable(R.drawable.back_small);   // 设置图片
+//        backButton.setBounds(300, 300, 300, 300); // 不好使。。
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.collapsing_toolbar_toolbar);
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_collapsingToolbar);
@@ -29,7 +35,7 @@ public class CollapsingToolbarActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
 //            ab.setIcon(R.mipmap.mytouxiang);            // 会出现第二个图标
-            ab.setHomeAsUpIndicator(R.drawable.back);     // 设置ActionBar的返回图标
+            ab.setHomeAsUpIndicator(backButton);     // 设置ActionBar的返回图标
             ab.setHomeButtonEnabled(true);                // 主键按钮能否可点击
             ab.setDisplayHomeAsUpEnabled(true);           // 显示返回图标
 //            ab.setDisplayHomeAsUpEnabled(true);         // 启用 HomeAsUp 按钮，默认图标就是一个返回按钮，所以不用单独设置图标了。

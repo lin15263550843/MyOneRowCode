@@ -197,6 +197,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="CollapsingToolbarLayout"
+                android:textColor="@color/colorRed"
                 android:textAllCaps="false" />
         </LinearLayout>
 
