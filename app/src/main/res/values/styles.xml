@@ -7,14 +7,16 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="MyTestActivityTheme" parent="AppTheme"></style>
     <!-- 自定义的 Base application theme. -->
     <!--<style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
-        <!--&lt;!&ndash; 在这里自定义您的主题。 &ndash;&gt;-->
-        <!--<item name="colorPrimary">#54BA42</item>-->
-        <!--<item name="colorPrimaryDark">#54BA42</item>-->
-        <!--<item name="colorAccent">#54BA42</item>-->
-        <!--&lt;!&ndash;<item name="android:actionBarStyle">@style/myActionBar</item> &lt;!&ndash;设置ActionBarStyle&ndash;&gt;&ndash;&gt;-->
-        <!--<item name="android:titleTextStyle">@style/actionBarTitleText</item> &lt;!&ndash;设置titleTextStyle&ndash;&gt;-->
+    <!--&lt;!&ndash; 在这里自定义您的主题。 &ndash;&gt;-->
+    <!--<item name="colorPrimary">#54BA42</item>-->
+    <!--<item name="colorPrimaryDark">#54BA42</item>-->
+    <!--<item name="colorAccent">#54BA42</item>-->
+    <!--&lt;!&ndash;<item name="android:actionBarStyle">@style/myActionBar</item> &lt;!&ndash;设置ActionBarStyle&ndash;&gt;&ndash;&gt;-->
+    <!--<item name="android:titleTextStyle">@style/actionBarTitleText</item> &lt;!&ndash;设置titleTextStyle&ndash;&gt;-->
     <!--</style>-->
 
     <style name="myActionBar" parent="Theme.AppCompat.Light.NoActionBar">

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--但是，即使我们将 android: fitsSystemWindows 属性都设置好了还是没有用的，因为还必须在程序的主题中将状态栏颜色指定成透明色才行。-->
+    <!--指定成透明色的方法很简单，在主题中将 android:statusBarColor 属性的值指定成 @android:color/transparent就可以了。-->
+    <!--但问题在于，android:statusBarColor 这个属性是从 API21，也就是 Android5.0 系统开始才有的，之前的系统无法指定这个属性。-->
+    <!--那么，系统差异型的功能实现就要从这里开始了。-->
+    <!--右击 res 目录- *New- +Directory，创建一个 values-v21 目录，然后右击 values-v21 目录- +New +Values resource file，创建一个 styles.Xml 文件。-->
+
+    这里我们定义了一个 FruitActivityTheme 主题，它是专广】给 FruitActivity 使用的。FruitActivity-
+
+    Theme 的 parent 主题是 AppTheme，也就是说，它继承了 AppTheme 中的所有特性。然后我们在 FruitActivityTheme 中将状态栏的颜色指定成透明色，由于 values-v21 目录是只有 Android 5.0 及以上的系统才会去读取的，因此这么声明是没有问题的。
+
+    但是 Android 5.0 之前的系统却无法识别 FruitActivityTheme 这个主题，因此我们还需要对
+
+    values/styles.xml 文件进行修改
+    <style name="MyTestActivityTheme" parent="AppTheme">
+        <!--系统状态栏颜色指定为透明-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>

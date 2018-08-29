@@ -160,7 +160,11 @@
         <activity android:name=".service.myTestServiceActivity" />
         <activity android:name=".BaiduLocateTestActivity" />
         <activity android:name=".common.TitleToolbarActivity" />
-        <activity android:name=".CollapsingToolbarActivity"></activity>
+        <activity
+            android:name=".CollapsingToolbarActivity"
+            android:theme="@style/MyTestActivityTheme">
+
+        </activity>
     </application>
 
 </manifest>
