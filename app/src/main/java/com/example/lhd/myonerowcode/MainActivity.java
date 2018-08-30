@@ -20,7 +20,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -28,7 +27,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -39,11 +37,10 @@ import com.example.lhd.myonerowcode.common.DialogActivity;
 import com.example.lhd.myonerowcode.common.OpenWebVIewActivity;
 import com.example.lhd.myonerowcode.contentResolver.ContactPeopleListActivity;
 import com.example.lhd.myonerowcode.dataLocalStorage.DataLocalStorageActivity;
-import com.example.lhd.myonerowcode.service.ActivityCollector;
+import com.example.lhd.myonerowcode.entity.PersonParcelable;
+import com.example.lhd.myonerowcode.entity.PersonSerializable;
 import com.example.lhd.myonerowcode.service.BaseActivity;
 import com.example.lhd.myonerowcode.service.myTestServiceActivity;
-
-import java.io.File;
 
 public class MainActivity extends BaseActivity {
 
@@ -157,6 +154,7 @@ public class MainActivity extends BaseActivity {
         Button myTestService21 = (Button) findViewById(R.id.main_my_test_service_21);
         Button baiduLocate22 = (Button) findViewById(R.id.main_baidu_locate_22);
         Button collapsingToolbar23 = (Button) findViewById(R.id.main_collapsing_toolbar_23);
+        Button serializableAndParcelable24 = (Button) findViewById(R.id.main_serializable_and_parcelable_24);
 
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
@@ -424,6 +422,24 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CollapsingToolbarActivity.class);
+                startActivity(intent);
+            }
+        });
+        serializableAndParcelable24.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PersonSerializable ps = new PersonSerializable();
+                ps.setName("小明");
+                ps.setAge(18);
+
+                PersonParcelable pp = new PersonParcelable();
+                pp.setName("小刚");
+                pp.setAge(8);
+
+                Intent intent = new Intent(MainActivity.this, SerializableAndParcelableActivity.class);
+                intent.putExtra("PersonSerializable_data", ps);
+                intent.putExtra("PersonParcelable_data", pp);
                 startActivity(intent);
             }
         });

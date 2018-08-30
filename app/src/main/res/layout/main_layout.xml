@@ -192,13 +192,22 @@
                 android:layout_height="wrap_content"
                 android:text="百度地图定位"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/main_collapsing_toolbar_23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="CollapsingToolbarLayout"
-                android:textColor="@color/colorRed"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="@color/colorRed" />
+
+            <Button
+                android:id="@+id/main_serializable_and_parcelable_24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="使用 Intent 传递对象"
+                android:textAllCaps="false"
+                android:textColor="@color/colorRed" />
         </LinearLayout>
 
     </ScrollView>

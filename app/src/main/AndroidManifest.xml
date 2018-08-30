@@ -163,9 +163,8 @@
         <activity android:name=".common.TitleToolbarActivity" />
         <activity
             android:name=".CollapsingToolbarActivity"
-            android:theme="@style/MyTestActivityTheme">
-
-        </activity>
+            android:theme="@style/MyTestActivityTheme"></activity>
+        <activity android:name=".SerializableAndParcelableActivity"></activity>
     </application>
 
 </manifest>
