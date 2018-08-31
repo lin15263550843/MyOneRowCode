@@ -208,6 +208,14 @@
                 android:text="使用 Intent 传递对象"
                 android:textAllCaps="false"
                 android:textColor="@color/colorRed" />
+
+            <Button
+                android:id="@+id/main_alarm_25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="创建定时任务：Alarm 机制"
+                android:textAllCaps="false"
+                android:textColor="@color/colorRed" />
         </LinearLayout>
 
     </ScrollView>

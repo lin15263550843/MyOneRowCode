@@ -40,6 +40,7 @@ import com.example.lhd.myonerowcode.dataLocalStorage.DataLocalStorageActivity;
 import com.example.lhd.myonerowcode.entity.PersonParcelable;
 import com.example.lhd.myonerowcode.entity.PersonSerializable;
 import com.example.lhd.myonerowcode.service.BaseActivity;
+import com.example.lhd.myonerowcode.service.LongRunningService;
 import com.example.lhd.myonerowcode.service.myTestServiceActivity;
 
 public class MainActivity extends BaseActivity {
@@ -155,6 +156,7 @@ public class MainActivity extends BaseActivity {
         Button baiduLocate22 = (Button) findViewById(R.id.main_baidu_locate_22);
         Button collapsingToolbar23 = (Button) findViewById(R.id.main_collapsing_toolbar_23);
         Button serializableAndParcelable24 = (Button) findViewById(R.id.main_serializable_and_parcelable_24);
+        Button alarm25 = (Button) findViewById(R.id.main_alarm_25);
 
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
@@ -441,6 +443,13 @@ public class MainActivity extends BaseActivity {
                 intent.putExtra("PersonSerializable_data", ps);
                 intent.putExtra("PersonParcelable_data", pp);
                 startActivity(intent);
+            }
+        });
+        alarm25.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LongRunningService.class);
+                startService(intent);
             }
         });
     }
