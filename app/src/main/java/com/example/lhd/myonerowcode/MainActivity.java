@@ -445,12 +445,16 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-        alarm25.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LongRunningService.class);
-                startService(intent);
-            }
+//        alarm25.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, LongRunningService.class);
+//                startService(intent);
+//            }
+//        });
+        alarm25.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, LongRunningService.class);
+            startService(intent);
         });
     }
 

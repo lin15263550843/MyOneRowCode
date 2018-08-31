@@ -51,14 +51,20 @@ public class LongRunningService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // 在这里执行具体的操作
-                LogUtil.d(TAG, "在这里执行具体的操作");
-                LogUtil.d(TAG, "一个小时执行一次，永久循环!!!");
-            }
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                // 在这里执行具体的操作
+//                LogUtil.d(TAG, "在这里执行具体的操作");
+//                LogUtil.d(TAG, "一个小时执行一次，永久循环!!!");
+//            }
+//        }).start();
+        new Thread(() -> {
+            // 在这里执行具体的操作
+            LogUtil.d(TAG, "在这里执行具体的操作");
+            LogUtil.d(TAG, "一个小时执行一次，永久循环!!!");
         }).start();
+
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         int anHour = 60 * 60 * 1000;  // 一小时的毫秒数
         long triggerAtTime = SystemClock.elapsedRealtime() + anHour;
