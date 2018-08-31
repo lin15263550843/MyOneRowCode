@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.lhd.myonerowcode.entity.PersonParcelable;
 import com.example.lhd.myonerowcode.entity.PersonSerializable;
+import com.example.lhd.myonerowcode.service.LogUtil;
 
 public class SerializableAndParcelableActivity extends AppCompatActivity {
     private static final String TAG = "SAPActivity";
@@ -18,10 +19,10 @@ public class SerializableAndParcelableActivity extends AppCompatActivity {
         // 获取 main 传递过来的数据
         PersonSerializable ps = (PersonSerializable) getIntent().getSerializableExtra("PersonSerializable_data");
         PersonParcelable pp = (PersonParcelable) getIntent().getParcelableExtra("PersonParcelable_data");
-        Log.d(TAG, "onCreate: 姓名：" + ps.getName());
-        Log.d(TAG, "onCreate: 年龄：" + ps.getAge());
-        Log.d(TAG, "onCreate: 姓名：" + pp.getName());
-        Log.d(TAG, "onCreate: 年龄：" + pp.getAge());
+        LogUtil.d(TAG, "onCreate: 姓名：" + ps.getName());
+        LogUtil.d(TAG, "onCreate: 年龄：" + ps.getAge());
+        LogUtil.d(TAG, "onCreate: 姓名：" + pp.getName());
+        LogUtil.d(TAG, "onCreate: 年龄：" + pp.getAge());
 
     }
 }

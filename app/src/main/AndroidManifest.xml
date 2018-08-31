@@ -77,9 +77,7 @@
             <!-- LBS SDK 中的服务 -->
         </service>
 
-        <activity
-            android:name=".MainActivity"
-            android:label="main主页">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <data android:scheme="growing.588f2d5cf04e66dd" />
 
