@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 //import com.bumptech.glide.Glide;
+import com.bumptech.glide.Glide;
 import com.example.lhd.myonerowcode.R;
 import com.example.lhd.myonerowcode.entity.TestTwoItemsActivity;
 
@@ -66,8 +67,8 @@ public class CardRecyclerViewAdapter extends RecyclerView.Adapter<CardRecyclerVi
         // 然后调用 load() 方法去加载图片，可以是一个URL地址，也可以是一个本地路径，或者是一个资源id，
         // 最后调用 into() 方法将图片设置到具体某一个 ImageView 中就可以了。
         // Glide 在内部做了许多非常复杂的逻辑操作，其中就包括了图片压缩，我们只需要安心按照 Glide 的标准=用法去加载图片就可以了。
-//        Glide.with(mContext).load(ttia.getImgId()).into(holder.cardItemImage);
-        holder.cardItemImage.setImageResource(ttia.getImgId());
+        Glide.with(mContext).load(ttia.getImgId()).into(holder.cardItemImage);
+//        holder.cardItemImage.setImageResource(ttia.getImgId());
     }
 
     @Override

@@ -28,6 +28,12 @@
                 android:textSize="20sp" />
 
             <Button
+                android:id="@+id/main_button_cool_weather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="酷欧天气" />
+
+            <Button
                 android:id="@+id/main_button_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

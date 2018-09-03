@@ -36,6 +36,7 @@ import com.example.lhd.myonerowcode.broadcast.BroadcastTestActivity;
 import com.example.lhd.myonerowcode.common.DialogActivity;
 import com.example.lhd.myonerowcode.common.OpenWebVIewActivity;
 import com.example.lhd.myonerowcode.contentResolver.ContactPeopleListActivity;
+import com.example.lhd.myonerowcode.coolWeather.CoolWeatherMainActivity;
 import com.example.lhd.myonerowcode.dataLocalStorage.DataLocalStorageActivity;
 import com.example.lhd.myonerowcode.entity.PersonParcelable;
 import com.example.lhd.myonerowcode.entity.PersonSerializable;
@@ -131,6 +132,7 @@ public class MainActivity extends BaseActivity {
             Log.v(TAG, "onCreate: " + tempData);
         }
 
+        Button openCoolWeather = (Button) findViewById(R.id.main_button_cool_weather);
         Button mainButton1 = (Button) findViewById(R.id.main_button_1);
         Button mainButton2 = (Button) findViewById(R.id.main_button_2);
         Button mainButton3 = (Button) findViewById(R.id.main_button_3);
@@ -160,6 +162,13 @@ public class MainActivity extends BaseActivity {
 
         final ProgressBar mainProgressBar1 = (ProgressBar) findViewById(R.id.main_progressbar_1);
 
+        // 打开酷欧天气
+        openCoolWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CoolWeatherMainActivity.class);
+            }
+        });
         mainButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
