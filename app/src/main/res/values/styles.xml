@@ -29,7 +29,7 @@
     <!--标题栏自定义字体 大小 颜色-->
     <style name="actionBarTitleText">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/color30FF05</item>
     </style>
 
 </resources>

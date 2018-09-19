@@ -3,6 +3,9 @@ package com.example.lhd.myonerowcode.service;
 import android.app.Application;
 import android.content.Context;
 
+import org.litepal.LitePalApplication;
+import org.litepal.util.Const;
+
 /**
  * Created by dhc on 2018/8/29.
  * 自定义 Application
@@ -21,6 +24,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        LitePalApplication.initialize(this);    // 初始化 LitePal
+
     }
 
     // 返回全局的 Context

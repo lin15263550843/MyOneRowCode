@@ -169,7 +169,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".coolWeather.CoolWeatherMainActivity"></activity>
+        <activity android:name=".coolWeather.CoolWeatherMainActivity" />
+        <activity android:name=".coolWeather.ChooseAreaActivity"></activity>
     </application>
 
 </manifest>

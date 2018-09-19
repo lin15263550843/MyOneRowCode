@@ -167,6 +167,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CoolWeatherMainActivity.class);
+                startActivity(intent);
             }
         });
         mainButton1.setOnClickListener(new View.OnClickListener() {
