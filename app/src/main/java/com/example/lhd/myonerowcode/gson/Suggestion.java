@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by dhc on 2018/9/19.
  * <p>
- * suggestion 中的具体内容如下所示：
- * "suggestion": {
+ * cool_suggestion 中的具体内容如下所示：
+ * "cool_suggestion": {
  *      "comf"：{
  *          "txt": "白天天气较热，虽然有雨，但仍煞无法削弱较高气温给人们带来的暑意，这种天气会让您感到不很舒适."
  *      }

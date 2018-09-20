@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.lhd.myonerowcode.entity.GSONEntity;
 import com.example.lhd.myonerowcode.service.HttpCallbackListener;
-import com.example.lhd.myonerowcode.service.HttpUtil;
+import com.example.lhd.myonerowcode.util.HttpUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -27,7 +27,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

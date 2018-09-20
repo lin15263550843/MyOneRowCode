@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by dhc on 2018/9/20.
  * <p>
- * 把 basic、aqi、now、suggestion 和 daily_forecast 对应的实体类全部都创建好了，
+ * 把 basic、aqi、now、cool_suggestion 和 daily_forecast 对应的实体类全部都创建好了，
  * 接下来还需要再创建一个总的实例类来引用刚刚创建的各个实体类。在 gson 包下新建一个 Weather 类。
  * <p>
  * 在 Weather 类中，我们对 Basic. AQI、Now. Suggestion 和 Forecast 类进行了引用。

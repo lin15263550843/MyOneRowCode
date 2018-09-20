@@ -8,20 +8,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lhd.myonerowcode.MainActivity;
 import com.example.lhd.myonerowcode.R;
 import com.example.lhd.myonerowcode.adapter.TestOneAdapter;
 import com.example.lhd.myonerowcode.db.City;
 import com.example.lhd.myonerowcode.db.County;
 import com.example.lhd.myonerowcode.db.Province;
 import com.example.lhd.myonerowcode.entity.TestOneItemsActivity;
-import com.example.lhd.myonerowcode.service.HttpUtil;
+import com.example.lhd.myonerowcode.util.HttpUtil;
 import com.example.lhd.myonerowcode.service.MyApplication;
 import com.example.lhd.myonerowcode.util.Utility;
 

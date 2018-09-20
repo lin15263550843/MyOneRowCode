@@ -1,10 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?><!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--tools:context="com.example.lhd.myonerowcode.coolWeather.CoolWeatherMainActivity">-->
+<?xml version="1.0" encoding="utf-8"?><!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:id="@+id/cool_weather_fragment"--><!--android:name="com.example.lhd.myonerowcode.coolWeather.ChooseAreaFragment"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent" />-->
 
-<!--<fragment--><!--android:id="@+id/cool_weather_fragment"--><!--android:name="com.example.lhd.myonerowcode.coolWeather.ChooseAreaFragment"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent" />-->
-
-<!--</android.support.constraint.ConstraintLayout>-->
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cool_weather_fragment"
-    android:name="com.example.lhd.myonerowcode.coolWeather.ChooseAreaFragment"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <ScrollView
+        android:id="@+id/cool_weather_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/cool_title" />
+
+            <include layout="@layout/cool_now" />
+
+            <include layout="@layout/cool_forecast" />
+
+            <include layout="@layout/cool_aqi" />
+
+            <include layout="@layout/cool_suggestion" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
