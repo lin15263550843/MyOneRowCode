@@ -58,7 +58,7 @@
     <!-- 请注意<application/>标签中的name属性值, 必须为您的Application类 -->
     <application
         android:name=".service.MyApplication"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/mytouxiang"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_mytouxiang_big"
         android:supportsRtl="true"

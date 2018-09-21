@@ -5,13 +5,16 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.lhd.myonerowcode.R;
 import com.example.lhd.myonerowcode.gson.Forecast;
 import com.example.lhd.myonerowcode.gson.Weather;
@@ -26,6 +29,8 @@ import okhttp3.Response;
 
 public class CoolWeatherMainActivity extends AppCompatActivity {
 
+    private static final String TAG = "CoolWeatherMainActivity";
+    private ImageView bingImg;
     private ScrollView weatherLayout;
     private TextView titleCity;
     private TextView titleUpdateTime;
@@ -44,6 +49,7 @@ public class CoolWeatherMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cool_weather_main_layout);
         // 初始化各个控件
+        bingImg = findViewById(R.id.cool_weather_main_bing_img);
         weatherLayout = (ScrollView) findViewById(R.id.cool_weather_main_layout);
         titleCity = findViewById(R.id.cool_title_city);
         titleUpdateTime = findViewById(R.id.cool_title_update_time);
@@ -55,7 +61,16 @@ public class CoolWeatherMainActivity extends AppCompatActivity {
         comfortText = findViewById(R.id.cool_suggestion_comfort_text);
         carWashText = findViewById(R.id.cool_suggestion_car_wash_text);
         sportText = findViewById(R.id.cool_suggestion_sport_text);
+
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String bingPic = sp.getString("bing_pic", null);
+        if (bingPic != null) {
+            Glide.with(this).load(bingPic).into(bingImg);
+        } else {
+            loadBingPic();
+        }
+
         String weatherString = sp.getString("weather", null);
         if (weatherString != null) {
             // 有缓存时直接解析天气数据
@@ -67,6 +82,33 @@ public class CoolWeatherMainActivity extends AppCompatActivity {
             weatherLayout.setVisibility(View.INVISIBLE);    // 请求数据的时候隐藏 ScrollView 不然空数据的界面看上去会很奇怪
             requestWeather("CN101120202");
         }
+    }
+
+    /**
+     * 加载必应每日一图
+     */
+    private void loadBingPic() {
+        String bingPicUrl = "http://guolin.tech/api/bing_pic";
+        HttpUtil.sendOkHttpRequest(bingPicUrl, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String bingPic = response.body().string();
+                Log.d(TAG, "必应每日一图地址：" + bingPic);
+                // 将图片缓存到 SharedPreferences 当中
+                @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(CoolWeatherMainActivity.this).edit();
+                editor.putString("bing_pic", bingPic);
+                editor.apply();
+                runOnUiThread(() -> {
+                    // 切换到主线程显示图片
+                    Glide.with(CoolWeatherMainActivity.this).load(bingPic).into(bingImg);
+                });
+            }
+        });
     }
 
     /**
@@ -95,6 +137,8 @@ public class CoolWeatherMainActivity extends AppCompatActivity {
                         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(CoolWeatherMainActivity.this).edit();
                         editor.putString("weather", responseText);
                         editor.apply();
+                        // 显示图片
+                        loadBingPic();
                         // 显示数据
                         showWeatherInfo(weather);
                     } else {
