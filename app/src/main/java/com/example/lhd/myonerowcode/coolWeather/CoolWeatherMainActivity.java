@@ -2,6 +2,8 @@ package com.example.lhd.myonerowcode.coolWeather;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +49,12 @@ public class CoolWeatherMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        // 状态栏设置
+//        if (Build.VERSION.SDK_INT >= 21) {  // Android 5.0 及以上才支持
+//            View decorView = getWindow().getDecorView();
+//            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);    // 让布局显示在状态栏上面
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);   // 将状态栏设置成透明色
+//        }
         setContentView(R.layout.cool_weather_main_layout);
         // 初始化各个控件
         bingImg = findViewById(R.id.cool_weather_main_bing_img);
