@@ -1,10 +1,13 @@
 package com.example.lhd.myonerowcode.util;
 
 import android.text.TextUtils;
+import android.webkit.WebView;
 
 import com.example.lhd.myonerowcode.db.City;
 import com.example.lhd.myonerowcode.db.County;
 import com.example.lhd.myonerowcode.db.Province;
+import com.example.lhd.myonerowcode.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,5 +96,24 @@ public class Utility {
             }
         }
         return false;
+    }
+
+    /**
+     * 将返回的 json 数据解析成 Weather 实体类
+     *
+     * @param response
+     * @return
+     */
+    public static Weather handleWeatherResponse(String response) {
+
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
