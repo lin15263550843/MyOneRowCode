@@ -5,38 +5,60 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
+
     <ImageView
         android:id="@+id/cool_weather_main_bing_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
-    <ScrollView
-        android:id="@+id/cool_weather_main_layout"
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/cool_weather_main_drawerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
 
-        <!--android:fitsSystemWindows="true" 为状态栏留出空间-->
-        <LinearLayout
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/cool_weather_main_refresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <include layout="@layout/cool_title" />
+            <ScrollView
+                android:id="@+id/cool_weather_main_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="none">
 
-            <include layout="@layout/cool_now" />
+                <!--android:fitsSystemWindows="true" 为状态栏留出空间-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:orientation="vertical">
 
-            <include layout="@layout/cool_forecast" />
+                    <include layout="@layout/cool_title" />
 
-            <include layout="@layout/cool_aqi" />
+                    <include layout="@layout/cool_now" />
 
-            <include layout="@layout/cool_suggestion" />
+                    <include layout="@layout/cool_forecast" />
 
-        </LinearLayout>
+                    <include layout="@layout/cool_aqi" />
 
-    </ScrollView>
+                    <include layout="@layout/cool_suggestion" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <fragment
+            android:id="@+id/cool_weather_main_fragment"
+            android:name="com.example.lhd.myonerowcode.coolWeather.ChooseAreaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start" />
+
+    </android.support.v4.widget.DrawerLayout>
 
 </FrameLayout>

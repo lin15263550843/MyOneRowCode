@@ -2,6 +2,7 @@ package com.example.lhd.myonerowcode.coolWeather;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lhd.myonerowcode.MainActivity;
 import com.example.lhd.myonerowcode.R;
 import com.example.lhd.myonerowcode.adapter.TestOneAdapter;
 import com.example.lhd.myonerowcode.db.City;
@@ -88,6 +90,25 @@ public class ChooseAreaFragment extends Fragment {
             } else if (currentLevel == LEVEL_CITY) {
                 selectedCity = cityList.get(position);
                 queryCounties();
+            } else if (currentLevel == LEVEL_COUNTY) {
+                String weatherId = countyList.get(position).getWeatherId();
+//                if (getActivity() instanceof MainActivity) {
+//                    Intent intent = new Intent(getActivity(), CoolWeatherMainActivity.class);
+//                    intent.putExtra("wwather_id", weatherId);
+//                    startActivity(intent);
+//                    getActivity().finish();
+//                } else if (getActivity() instanceof CoolWeatherMainActivity) {
+//                    // 如果是在 CoolWeatherMainActivity 中，关闭滑动菜单，显示下拉刷新进度条，然后请求新城市的天气信息
+//                    CoolWeatherMainActivity coolWeatherMainActivity = (CoolWeatherMainActivity) getActivity();
+//                    coolWeatherMainActivity.drawerLayout.closeDrawers();
+//                    coolWeatherMainActivity.swipeRefreshLayout.setRefreshing(true);
+//                    coolWeatherMainActivity.requestWeather(weatherId);
+//                }
+                // 关闭滑动菜单，显示下拉刷新进度条，然后请求新城市的天气信息
+                CoolWeatherMainActivity coolWeatherMainActivity = (CoolWeatherMainActivity) getActivity();
+                coolWeatherMainActivity.drawerLayout.closeDrawers();
+                coolWeatherMainActivity.swipeRefreshLayout.setRefreshing(true);
+                coolWeatherMainActivity.requestWeather(weatherId);
             }
         });
         // 返回按钮操作
