@@ -18,8 +18,15 @@
     <com.example.lhd.myonerowcode.androidQYZ.CustomViewOnMeasure
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:background="@color/black" />
 
+    <com.example.lhd.myonerowcode.androidQYZ.CustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="这是自定义的 TextView 哈哈哈"
+        android:textSize="18sp" />
 </LinearLayout>
