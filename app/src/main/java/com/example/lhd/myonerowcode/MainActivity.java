@@ -32,6 +32,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lhd.myonerowcode.androidQYZ.AndroidQYZMainActivity;
 import com.example.lhd.myonerowcode.broadcast.BroadcastTestActivity;
 import com.example.lhd.myonerowcode.common.DialogActivity;
 import com.example.lhd.myonerowcode.common.OpenWebVIewActivity;
@@ -133,6 +134,7 @@ public class MainActivity extends BaseActivity {
         }
 
         Button openCoolWeather = (Button) findViewById(R.id.main_button_cool_weather);
+        Button android_QYZ_main = (Button) findViewById(R.id.main_button_QYZ_main);
         Button mainButton1 = (Button) findViewById(R.id.main_button_1);
         Button mainButton2 = (Button) findViewById(R.id.main_button_2);
         Button mainButton3 = (Button) findViewById(R.id.main_button_3);
@@ -170,6 +172,16 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        // Android 群英传模块
+        android_QYZ_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AndroidQYZMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         mainButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

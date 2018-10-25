@@ -32,6 +32,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="酷欧天气" />
+            <Button
+                android:id="@+id/main_button_QYZ_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:text="Android 群英传" />
 
             <Button
                 android:id="@+id/main_button_1"
