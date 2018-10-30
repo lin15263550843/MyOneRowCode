@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.lhd.myonerowcode.androidQYZ.AndroidQYZMainActivity">
+    android:orientation="vertical">
+
+    <com.example.lhd.myonerowcode.androidQYZ.CustomTopBar
+        android:id="@+id/qyz_main_customTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        custom:leftBackground="@drawable/back"
+        custom:rightBackground="#000000"
+        custom:rightText="菜单"
+        custom:rightTextColor="#ffffff"
+        custom:title="自定义标题"
+        custom:titleTextColor="#ffffff"
+        custom:titleTextSize="5sp" />
 
     <TextView
         android:id="@+id/qyz_main_textView"
@@ -28,5 +43,5 @@
         android:layout_gravity="center"
         android:padding="10dp"
         android:text="这是自定义的 TextView 哈哈哈"
-        android:textSize="18sp" />
+        android:textSize="26sp" />
 </LinearLayout>
