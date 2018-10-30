@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -44,4 +43,8 @@
         android:padding="10dp"
         android:text="这是自定义的 TextView 哈哈哈"
         android:textSize="26sp" />
+
+    <com.example.lhd.myonerowcode.androidQYZ.CustomRing
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
